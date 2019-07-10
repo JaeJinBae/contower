@@ -15,7 +15,6 @@
 <style>
 	.allWrap{
 		width: 100%;
-		min-width: 1340px;
 		position: relative;
 	}
 	.popupWrap{
@@ -23,7 +22,6 @@
 		position: fixed;
 		width: 100%;
 		height: 100%;
-		z-index: 9;
 	}
 	.popup_bg{
 		position: fixed;
@@ -37,7 +35,7 @@
 	.popup_memoRegister{
 		display: none;
 		width:350px;
-		background: #fff;
+		background: #f3f3f3;
 		margin:0 auto;
 		margin-top:100px;
 		position: relative;
@@ -46,18 +44,10 @@
 	}
 	.popup_memoRegister > h3{ 
 		width: 100%;
-		font-size: 23px;
+		font-size: 25px;
 		color: #fff;
-		padding: 10px 0;
-		background: #6c7981;
-		position: relative;
-	}
-	.popup_memoRegister > h3 > img{
-		width: 20px;
-		position: absolute;
-		right: 10px;
-		cursor: pointer;
-		margin-top:2px;
+		padding: 15px 0;
+		background: #475c6f;
 	}
 	.popup_memoRegister > table{
 		width: 100%;
@@ -97,16 +87,23 @@
 	.popup_btnWrap > p{
 		cursor: pointer;
 		display: inline-block;
+		font-size: 15px;
+		padding: 7px 12px; 
 		border-radius: 4px;
 	}
-	.popup_btnWrap > p > img{
-		width: 35px;
+	.popup_btnWrap > p:nth-child(1){
+		background: #1e866a;
+		color: #efefef;
+	}
+	.popup_btnWrap > p:nth-child(2){
+		background: lightgray;
+		color: #333;
 	}
 	
 	.popup_memoUpdate{
 		display: none;
 		width:350px;
-		background: #fff;
+		background: #f3f3f3;
 		margin:0 auto;
 		margin-top:100px;
 		position: relative;
@@ -115,18 +112,10 @@
 	}
 	.popup_memoUpdate > h3{ 
 		width: 100%;
-		font-size: 23px;
+		font-size: 25px;
 		color: #fff;
-		padding: 10px 0;
-		background: #6c7981;
-		position: relative;
-	}
-	.popup_memoUpdate > h3 > img{
-		width: 20px;
-		position: absolute;
-		right: 10px;
-		cursor: pointer;
-		margin-top:2px;
+		padding: 15px 0;
+		background: #475c6f;
 	}
 	.popup_memoUpdate > table{
 		width: 100%;
@@ -159,40 +148,12 @@
 		padding: 7px;
 	}
 	
-	.leftAside{
-		position: absolute;
-		top:0;
-		left: 0;
-		width: 200px;
-		box-shadow: 0px 0px 6px 0px gray;
-		background: #fff;
-		z-index: 5;
-	}
-	
-	.rightAside{
-		position: absolute;
-		top: 0;
-		left:0;
-		padding-left:202px;
+	.headerWrap{
 		width: 100%;
+		height: 70px;
+		background: #475c6f;
+		
 	}
-	.raTop{
-		width: 100%;
-		height: 80px;
-		background: #fff;
-		box-shadow: 0px 0px 10px 0px gray;
-	}
-	.raBg{
-		position: absolute;
-		top: 0;
-		left:0;
-		width: 100%;
-		height: 700px;
-		background: #ecf7ff;
-		z-index: -1;
-	}
-	
-	
 	.sectionWrap{
 		width: 100%;
 		min-height: 829px;
@@ -205,13 +166,10 @@
 	}
 	.asideTop{
 		overflow: hidden;
-		margin-bottom: 15px;
+		margin-bottom: 70px;
 	}
 	#calendarWrap {
 		float:left;
-		margin: 15px;
-		background: #fff;
-		box-shadow: 0px 0px 20px -5px gray;
 	}
 	
 	
@@ -226,14 +184,11 @@
 	.noticeListWrap{
 		width: 340px;
 		float: right;
-		margin: 15px 15px 10px 15px;
-	}
-	.noticeChkInOut{
-		box-shadow: 0px 0px 20px -5px gray;
+		margin-left: 25px;
 	}
 	.noticeChkInOut > h4{
 		width: 100%;
-		background: #6c7981;
+		background: #7b93a8;
 		color: #fff;
 		text-align: center;
 		padding: 7px;
@@ -243,14 +198,13 @@
 		width: 100%;
 		max-height: 150px;
 		overflow: auto;
-		border: 1px solid #efefef;
-		background: #fff;
+		border: 1px solid lightgray;
 	}
 	.noticeChkInOut > .tblWrap > table{
 		width: 100%;
 	}
 	.noticeChkInOut > .tblWrap > table tr{
-		border-bottom: 1px solid #e4e9ed;
+		
 	}
 	.noticeChkInOut > .tblWrap > table tr th{
 		font-size:18px;
@@ -269,6 +223,9 @@
 		text-align: center;
 		font-size: 15px;
 	}
+	.noticeChkInOut > .tblWrap > table .noticeContentTr:nth-child(odd){
+		background: #efefef;
+	}
 	.noticeChkOutWrap{
 		margin-top:15px;
 	}
@@ -277,13 +234,11 @@
 		display: none;
 		width: 100%;
 		margin-top: 15px;
-		background: #fff;
-		box-shadow: 0px 0px 20px -5px gray;
-		border: 1px soild #efefef;
+		background: #efefef;
 	}
 	.memoTitle{
 		width: 100%;
-		background: #6c7981;
+		background: #7b93a8;
 	}
 	.memoTitle > h4{
 		width: 100%;
@@ -291,13 +246,6 @@
 		color: #fff;
 		padding: 7px 0;
 		font-size: 17px;
-		position: relative;
-	}
-	.memoTitle > h4 > img.memoCloseBtn{
-		width: 16px;
-		position: absolute;
-		right: 10px;
-		cursor: pointer;
 	}
 	.memoContent{
 		width: 100%;
@@ -311,48 +259,53 @@
 		font-size: 15px;
 		resize: none;
 		padding: 7px;
-		overflow: auto;
-		border: 1px solid #efefef;
-		background: #fff;
+		overflow: auto; 
 	}
 	.memoBtnWrap{
 		width: 100%;
-		text-align: right;
+		text-align: center;
 		padding: 5px 0;
 	}
 	.memoBtnWrap > p{
 		display: inline-block;
+		font-size: 15px;
+		padding: 8px 10px;
 		cursor: pointer;
-		margin-right: 10px;
+		color: #fff;
+		border-radius: 3px;
 	}
-	.memoBtnWrap > p > img{
-		width: 35px;
+	.memoBtnWrap > p:nth-child(1){
+		background: #064acb;
+	}
+	.memoBtnWrap > p:nth-child(2){
+		background: #366ed8;
+		margin: 0 3px;
+	}
+	.memoBtnWrap > p:nth-child(3){
+		background: #f3a953;
 	}
 	
 	.asideBottom{
-		width: 100%;
-		margin: 10px;
-		margin: 0 auto;
-		box-shadow: 0px 0px 30px -5px gray;
+	
 	}
 	.asideBottom > table{
-		width: 100%;
-		border: 1px solid #efefef;
+		border: 1px solid lightgray;
 	}
 	.asideBottom > table tr{
 	
 	}
 	.asideBottom > table tr > th{
 		font-size: 15px;
+		border: 1px solid lightgray;
 	}
 	.asideBottom > table tr > td{
 		font-size: 15px;
 		text-align: center;
 		padding: 7px 0;
-		border-bottom: 1px solid lightgray;
+		border: 1px solid lightgray;
 	}
 	.asideBottom > table tr:first-child{
-		background: #6c7981;
+		background: #475c6f;
 	}
 	.asideBottom > table tr:first-child > th{
 		color: #fff;
@@ -360,12 +313,11 @@
 		padding: 5px;
 	}
 	.asideBottom > table tr:nth-child(2){
-		border-bottom: 3px solid lightgray;
+		background: #7b93a8;
 	}
 	.asideBottom > table tr:nth-child(2) > th{
-		color: #333;
+		color: #fff;
 		padding: 6px 0;
-		font-weight: bold;
 	}
 	.asideBottom > table tr:nth-child(2) > th:first-child{
 		width: 35px;
@@ -394,6 +346,9 @@
 	.asideBottom > table tr:nth-child(2) > th:nth-child(9){
 		width: 90px;
 	}
+	.mbListTr:nth-child(even){
+		background: #efefef;
+	}
 	.mbListTr > td:nth-child(2) > a:hover{
 		font-weight: bold;
 		color: #4374d9;
@@ -410,8 +365,15 @@
 		color: #c41f2f;
 		font-weight: bold;
 	}
+	.footerWrap{
+		width: 100%;
+		height: 70px;
+		background: #7b93a8;
+	}
 </style>
 <script>
+
+
 function get_roomByBnoDate(bnoList, date){
 	var dt;
 	$.ajax({
@@ -429,13 +391,14 @@ function get_roomByBnoDate(bnoList, date){
 	return dt;
 }
 
-function draw_table_managementBuilding(ono){
+
+function draw_table_ownBuilding(ono){
 	var buiList = get_BuildingByOno(ono);
 	var str = "";
 	var cntNum = 1;
 	var addr = "";
 	if(buiList.length == 0){
-		str = "<tr><td colspan='9'>관리건물이 존재하지 않습니다.</td></tr>";
+		str = "<tr><td colspan='9'>보유중인 건물이 존재하지 않습니다.</td></tr>";
 	}else{
 		$(buiList).each(function(){
 			if(this.baddr_old == "" || this.baddr_old == null || this.baddr_old == "null"){
@@ -443,7 +406,7 @@ function draw_table_managementBuilding(ono){
 			}else{
 				addr = this.baddr_old;
 			}
-			str += "<tr class='mbListTr'><td>"+cntNum+"<input type='hidden' name='bno' value='"+this.bno+"'></td><td><a href='${pageContext.request.contextPath}/mBuiInfo/"+this.bno+"'>"+this.bname+"</a></td>"
+			str += "<tr class='mbListTr'><td>"+cntNum+"<input type='hidden' name='bno' value='"+this.bno+"'></td><td><a href='${pageContext.request.contextPath}/owner/oBuiInfo/"+this.bno+"'>"+this.bname+"</a></td>"
 				+"<td>"+this.oname+"</td><td>"+this.ophone+"</td><td>"+addr+"</td>"
 				+"<td>"+this.cnt_complete+"</td><td>"+this.cnt_empty+"</td><td>"+this.total_monthly_rent+"</td><td>"+this.total_deposit+"</td>";
 				cntNum++;
@@ -482,11 +445,11 @@ function draw_table_roomMonthSchedule(date){
 			str += "<tr class='noticeContentTr'><td><p>일정이 없습니다.</p></td></tr>";
 		}else{
 			$(list.chkInList).each(function(){
-				str += "<tr class='noticeContentTr'><td><span class='fc_green'>입주</span> "+this.check_in+" "+"<a href='${pageContext.request.contextPath}/mBuiInfo/"+this.bno+"'> "+this.bname+"</a> "+this.rno+"호</td></tr>";
+				str += "<tr class='noticeContentTr'><td><span class='fc_green'>입주</span> "+this.check_in+" "+"<a href='${pageContext.request.contextPath}/owner/oBuiInfo/"+this.bno+"'> "+this.bname+"</a> "+this.rno+"호</td></tr>";
 				//달력표시
 				cTag = $(".c_"+this.check_in+" > .calNoticeWrap");
 				if(cTag.find(".icon_in_house").length <= 0){
-					cTag.append("<img class='icon_in_house' src='${pageContext.request.contextPath}/resources/images/icon_chkin.png'>");
+					cTag.append("<img class='icon_in_house' src='${pageContext.request.contextPath}/resources/images/icon_in_house.png'>");
 				}
 			});
 		}
@@ -500,11 +463,11 @@ function draw_table_roomMonthSchedule(date){
 			str += "<tr class='noticeContentTr'><td><p>일정이 없습니다.</p></td></tr>";
 		}else{
 			$(list.chkOutList).each(function(){
-				str += "<tr class='noticeContentTr'><td><span class='fc_red'>퇴실</span>  "+this.check_out+"<a href='${pageContext.request.contextPath}/mBuiInfo/"+this.bno+"'> "+this.bname+"</a> "+this.rno+"호</td></tr>";
+				str += "<tr class='noticeContentTr'><td><span class='fc_red'>퇴실</span>  "+this.check_out+"<a href='${pageContext.request.contextPath}/owner/oBuiInfo/"+this.bno+"'> "+this.bname+"</a> "+this.rno+"호</td></tr>";
 				//달력표시
 				cTag = $(".c_"+this.check_out+" > .calNoticeWrap");
 				if(cTag.find(".icon_out_house").length <= 0){
-					cTag.append("<img class='icon_out_house' src='${pageContext.request.contextPath}/resources/images/icon_chkout.png'>");
+					cTag.append("<img class='icon_out_house' src='${pageContext.request.contextPath}/resources/images/icon_out_house.png'>");
 				}
 			});
 		}
@@ -514,14 +477,11 @@ function draw_table_roomMonthSchedule(date){
 	
 }
 
-
 $(function(){
-	
 	var today = new Date();
-	draw_table_managementBuilding($("#seOno").val());
+	draw_table_ownBuilding($("#seOno").val());
 	drawCalendar(today);
 	
-	var memoBtnNum = 0; 
 	
 	//달력 이전달 클릭
 	$("#prevMonth > p").click(function(){
@@ -530,14 +490,6 @@ $(function(){
 		var nowDate = new Date(splitDateInfo[0], Number(splitDateInfo[1])-1, 1);
 		var prevDate = new Date(nowDate.setDate(nowDate.getDate()-1));
 		drawCalendar(prevDate);
-		//draw_table_roomMonthSchedule($("#sYearMonth > input[name='selectDate']").val());
-		
-		//메모 + 버튼 유무
-		if(memoBtnNum == 0){
-			$(".calendarDateTr > td > p > span.btnPlus").css("display","none");
-		}else{
-			$(".calendarDateTr > td > p > span.btnPlus").css("display","inline-block");
-		}
 	});
 	
 	//달력 다음달 클릭
@@ -547,15 +499,7 @@ $(function(){
 		var nowDate = new Date(splitDateInfo[0], Number(splitDateInfo[1])+1, 1);
 		var nextDate = new Date(nowDate.setDate(nowDate.getDate()-1));
 		drawCalendar(nextDate);
-		
-		//메모 + 버튼 유무
-		if(memoBtnNum == 0){
-			$(".calendarDateTr > td > p > span.btnPlus").css("display","none");
-		}else{
-			$(".calendarDateTr > td > p > span.btnPlus").css("display","inline-block");
-		}
 	});
-	
 	
 });
 </script>
@@ -568,108 +512,74 @@ $(function(){
 	<div class="allWrap">
 		<div class="popupWrap">
 			<div class="popup_bg"></div>
-			<div class="popup_memoRegister">
-				<h3>메모추가<img src="${pageContext.request.contextPath}/resources/images/icon_x.png" title="닫기"></h3>
-				<table>
-					<tr>
-						<td><input type="date" name="mdate" placeholder="ex) 2019-09-09" readonly></td>
-					</tr>
-					<tr>
-						<td><textarea></textarea></td>
-					</tr>
-				</table>
-				<div class="popup_btnWrap">
-					<p><img src="${pageContext.request.contextPath}/resources/images/icon_plus.png" title="수정"></p>
-				</div>
-			</div><!-- popup_memoRegister -->
-			<div class="popup_memoUpdate">
-				<h3>메모수정<input type="hidden" name="memoNo" value=""><img src="${pageContext.request.contextPath}/resources/images/icon_x.png" title="닫기"></h3>
-				<table>
-					<tr>
-						<td><input type="date" name="mdate" placeholder="ex) 2019-09-09" readonly></td>
-					</tr>
-					<tr>
-						<td><textarea></textarea></td>
-					</tr>
-				</table>
-				<div class="popup_btnWrap">
-					<p><img src="${pageContext.request.contextPath}/resources/images/icon_plus.png" title="수정"></p>
-				</div>
-			</div><!-- popup_memoRegister -->
 		</div>
-		<div class="leftAside">
-			<jsp:include page="../include/ownerMenu.jsp"></jsp:include>
+		<div class="headerWrap">
+			<jsp:include page="../include/ownerHeader.jsp"></jsp:include>
 		</div>
-		<div class="rightAside">
-			<div class="raTop">
-				<jsp:include page="../include/ownerHeader.jsp"></jsp:include>
-			</div>
-			<div class="raBg"></div>
-			<div class="sectionWrap">
-				<div class="section">
-					<div class="asideTop">
-						<div id="calendarWrap">
-							<table>
-								<tr id="calendar1tr">
-									<td id="prevMonth" colspan="2"><p>◀</p></td>
-									<td id="sYearMonth" colspan="3"><h3></h3><h4></h4><input type='hidden' name='selectDate' value=''></td>
-									<td id="nextMonth" colspan="2"><p>▶</p></td>
-								</tr>
-								<tr id="calendar2tr">
-									<td colspan="7"><img src="${pageContext.request.contextPath}/resources/images/icon_chkin.png"><span>입실</span><img src="${pageContext.request.contextPath}/resources/images/icon_chkout.png"><span>퇴실</span></td>
-								</tr>
-								<tr id="calendar3tr">
-									<td><p>SUN</p></td>
-									<td><p>MON</p></td>
-									<td><p>TUE</p></td>
-									<td><p>WED</p></td>
-									<td><p>THU</p></td>
-									<td><p>FRI</p></td>
-									<td><p>SAT</p></td>
-								</tr>
-								
-							</table>
-						</div><!-- calendarWrap end -->
-						<div class="noticeListWrap">
-							<div class="noticeChkInWrap noticeChkInOut">
-								<h4></h4>
-								<div class="tblWrap">
-									<table></table>
-								</div>
-								
-							</div>
-							<div class="noticeChkOutWrap noticeChkInOut">
-								<h4></h4>
-								<div class="tblWrap">
-									<table></table>
-								</div>
-							</div>
-							<div class="memoWrap">
-								
-							</div>
-						</div><!-- noticeListWrap end -->
-					</div><!-- asideTop end -->
-					<div class="asideBottom">
+		<div class="sectionWrap">
+			<div class="section">
+				<div class="asideTop">
+					<div id="calendarWrap">
 						<table>
-							<tr class="mbInfoTr">
-								<th colspan="9">현재 관리 중인 건물은 총 <span>3</span>채입니다.</th>
+							<tr id="calendar1tr">
+								<td id="prevMonth" colspan="2"><p>◀</p></td>
+								<td id="sYearMonth" colspan="3"><p></p><input type='hidden' name='selectDate' value=''></td>
+								<td id="nextMonth" colspan="2"><p>▶</p></td>
 							</tr>
-							<tr class="mbTblColTr">
-								<th>No</th>
-								<th>건물명</th>
-								<th>건물주</th>
-								<th>연락처</th>
-								<th>주소</th>
-								<th>입주완료</th>
-								<th>공실</th>
-								<th>월세 합계</th>
-								<th>보증금 합계</th>
+							<tr id="calendar2tr">
+								<td><p>일</p></td>
+								<td><p>월</p></td>
+								<td><p>화</p></td>
+								<td><p>수</p></td>
+								<td><p>목</p></td>
+								<td><p>금</p></td>
+								<td><p>토</p></td>
 							</tr>
+							
 						</table>
-					</div>
-				</div><!-- section end -->
-			</div><!-- sectionWrap end -->
-		</div><!-- rightAside end -->
-	</div><!-- allWrap end -->
+					</div><!-- calendarWrap end -->
+					<div class="noticeListWrap">
+						<div class="noticeChkInWrap noticeChkInOut">
+							<h4></h4>
+							<div class="tblWrap">
+								<table></table>
+							</div>
+							
+						</div>
+						<div class="noticeChkOutWrap noticeChkInOut">
+							<h4></h4>
+							<div class="tblWrap">
+								<table></table>
+							</div>
+						</div>
+						<div class="memoWrap">
+							
+						</div>
+					</div><!-- noticeListWrap end -->
+				</div><!-- asideTop end -->
+				<div class="asideBottom">
+					<table>
+						<tr class="mbInfoTr">
+							<th colspan="9">현재 보유 중인 건물은 총 <span>3</span>채입니다.</th>
+						</tr>
+						<tr class="mbTblColTr">
+							<th>No</th>
+							<th>건물명</th>
+							<th>건물주</th>
+							<th>연락처</th>
+							<th>주소</th>
+							<th>입주완료</th>
+							<th>공실</th>
+							<th>월세 합계</th>
+							<th>보증금 합계</th>
+						</tr>
+					</table>
+				</div>
+			</div><!-- section end -->
+		</div>
+		<div class="footerWrap">
+			
+		</div>
+	</div>
 </body>
 </html>

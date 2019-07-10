@@ -6,93 +6,18 @@
 <style>
 	.header{
 		width: 100%;
-		min-width: 1100px;
-		margin: 0 auto;
-		padding: 15px;
-		position: absolute;
-		top: 0;
 	}
-	.logoWrap{
-		width: 250px;
-		/* display: inline-block; */
-		float: left;
-		vertical-align: middle;
-	}
-	.logoWrap > a{
-		width: 100%;
-		display: inline-block;
-	} 
-	.logoWrap > a > img{
-		width: 100%;
-	}
-	.se{
-		display: none;
-	}
-	.headerBtnWrap{
-		float: left;
-		margin-left: 20px;
-	}
-	.headerBtnWrap > ul{
-		
-	}
-	.headerBtnWrap > ul > li{
-		float: left;
-		width: 100px;
-		line-height: 36px;
-	}
-	.headerBtnWrap > ul > li > p{
-		font-size: 16px;
-		text-align: center;
-	}
-	.headerBtnWrap > ul > li > p > a{
-		color: #e1e1e1;
-	}
-	.headerBtnWrap > ul > li > p > a:hover{
-		color: #fff;
+	.loginInfo{
+		float:right;
+		margin-right: 20px;
+		font-size: 17px;
 		font-weight: bold;
 	}
-	.headerBtnWrap > ul > li:nth-child(3):hover > .headerSubMenu{
-		display: block;
-	}
-	.headerSubMenu{
-		display: none;
-		margin-top: 19px;
-		border: 1px solid lightgray;
-	}
-	.headerSubMenu > ul{
-		
-	}
-	.headerSubMenu > ul > li{
-		font-size: 15px;
-		text-align: center;
-		border-top: 1px solid lightgray;
-		background: #fff;
-	}
-	.headerSubMenu > ul > li:hover{
-		background: #7d93a8;
-	}
-	.headerSubMenu > ul > li:hover > a{
-		color: #fff;
-	}
-	.headerSubMenu > ul > li > a{
-		
-	}
-	
-	.myInfo{
-		float: right;
-		margin-right: 26px;
-	}
-	.myInfo > p{
-		font-size: 15px;
-		color: #e1e1e1;
-		text-align: center;
-	}
-	.myInfo > p > a{
-		font-size: 15px;
-		color: #e1e1e1;
-	}
-	.myInfo > p:nth-child(1){
-		margin-bottom: 6px;
+	.loginInfo > a{
+		font-size: 17px;
+		font-weight: bold;
+		font-family: sans-serif;
+		line-height: 80px;
 	}
 </style>
 <script>
@@ -136,34 +61,15 @@ $(function(){
 });
 </script>
 <div class="header">
-	<div class="logoWrap">
-		<a href="${pageContext.request.contextPath}/owner/oMain"><img src="${pageContext.request.contextPath}/resources/images/logo3.png"></a>
+	<div class="loginInfo">
+		<a href="${pageContext.request.contextPath}/managerMyPage">MyPage</a>&nbsp;&nbsp;/&nbsp;&nbsp;
+		<a href="${pageContext.request.contextPath}/logout">Logout</a>
 	</div>
 	<div class="se">
 		<input id="seId" type="hidden" value="${sessionScope.id}">
 		<input id="seName" type="hidden" value="${sessionScope.name}">
 		<input id="seOno" type="hidden" value="${sessionScope.ono}">
-		<input id="seOphone" type="hidden" value="${sessionScope.ophone}">
+		<input id="seOphone" type="hidden" value="${sessionScope.mphone}">
 	</div>
-	<div class="headerBtnWrap">
-		<ul>
-			<li><p><a href="${pageContext.request.contextPath}/owner/oMain">HOME</a></p></li>
-			<li><p><a href="${pageContext.request.contextPath}/owner/oBuiReg">신규건물추가</a></p></li>
-			<li>
-				<p><a href="#none">관리건물 ▼</a></p>
-				<div class="headerSubMenu">
-					<ul>
-						
-					</ul>
-				</div>
-			</li>
-			<%-- <li><p><a href="${pageContext.request.contextPath}/owner/oEmptyRoomInfo">공실정보</a></p></li> --%>
-			<li><p><a href="${pageContext.request.contextPath}/owner/oRepairCompany">수리/시공</a></p></li>
-			<li><p><a href="${pageContext.request.contextPath}/owner/oTradeInfo">건물매매</a></p></li>
-		</ul>
-	</div><!-- headerBtnWrap end -->
-	<div class="myInfo">
-		<p>${sessionScope.name}(${sessionScope.id})님 환영합니다.</p>
-		<p><a href="${pageContext.request.contextPath}/owner/ownerMyPage">마이페이지</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="${pageContext.request.contextPath}/logout">로그아웃</a></p>
-	</div>
+	
 </div>

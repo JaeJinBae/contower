@@ -35,7 +35,8 @@ function drawCalendar(today){
 	$("#calendarWrap > table .calendarDateTr").remove();
 	$("#calendarWrap > table").append(str);
 	
-	$("#sYearMonth > p").text(year+"년"+" "+month+"월");
+	$("#sYearMonth > h3").text(month);
+	$("#sYearMonth > h4").text(year);
 	$("#sYearMonth > input[name='selectDate']").val(year+"-"+(month>9?'':'0')+month);
 	
 	var nDate = new Date();
@@ -46,8 +47,7 @@ function drawCalendar(today){
 	d = (d>9?'':'0')+d;
 	td = y+"-"+m+"-"+d;
 	
-	$(".c_"+td).css("background","orange");
+	$(".c_"+td).css({"background":"orange", "border-radius":"50px"});
 	
-	/*draw_memo(year+"-"+(month>9?'':'0')+month);*/
 	draw_table_roomMonthSchedule(year+"-"+(month>9?'':'0')+month);
 }
