@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webaid.mappers.ManagerMapper">
+
+	<select id="selectAll" resultType="ManagerVO">
+		select * from manager
+	</select>
+	
+	<select id="selectOne" resultType="ManagerVO">
+		select * from manager where mno=#{mno}
+	</select>
+	
+	<select id="selectById" resultType="ManagerVO">
+		select * from manager where id=#{id}
+	</select>
+	
+	<insert id="register">
+		insert into manager values(0, #{name}, #{birth}, #{phone}, #{mail}, #{company_name}, #{company_num}, #{company_ceo}, #{id}, #{pw})
+	</insert>
+	
+	<update id="update">
+		update manager set  name=#{name}, birth=#{birth}, phone=#{phone}, mail=#{mail}, company_name=#{company_name}, company_num=#{company_num}, company_ceo=#{company_ceo}, pw=#{pw} where mno=#{mno}
+	</update>
+	
+	<delete id="delete">
+		delete from manager where mno=#{mno}
+	</delete>
+</mapper>

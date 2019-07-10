@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webaid.mappers.BuildingMapper">
+
+	<select id="selectAll" resultType="BuildingVO">
+		select * from building
+	</select>
+	
+	<select id="selectOne" resultType="BuildingVO">
+		select * from building where bno=#{bno}
+	</select>
+	
+	<select id="selectByMno" resultType="BuildingVO">
+		select * from building where mno=#{mno} order by bname asc
+	</select>
+	
+	<select id="selectByOno" resultType="BuildingVO">
+		select * from building where ono=#{ono} order by bname asc
+	</select>
+	
+	<insert id="register" useGeneratedKeys="true" keyProperty="bno">
+		insert into building values(0, #{bname}, #{baddr_old}, #{baddr_new}, #{bpw}, #{heating}, #{boption}, #{completion_date}, #{site}, #{gross_area}, #{road}, #{ono}, #{oname}, #{ophone}, #{obirth}, #{mno}, #{mphone}, #{cnt_one}, #{cnt_mitwo}, #{cnt_two}, #{cnt_three}, #{cnt_owner}, #{cnt_store}, #{cnt_complete}, #{cnt_contract_complete}, #{cnt_empty}, #{total_monthly_rent}, #{total_deposit}, #{memo})
+	</insert>
+	
+	<update id="update">
+		update building set bname=#{bname}, baddr_old=#{baddr_old}, baddr_new=#{baddr_new}, bpw=#{bpw}, heating=#{heating}, boption=#{boption}, completion_date=#{completion_date}, site=#{site},
+						gross_area=#{gross_area}, road=#{road}, oname=#{oname}, ophone=#{ophone}, obirth=#{obirth}, memo=#{memo} where bno=#{bno}
+	</update>
+	
+	<update id="updateCnt">
+		update building set cnt_one=#{cnt_one}, cnt_mitwo=#{cnt_mitwo}, cnt_two=#{cnt_two}, cnt_three=#{cnt_three}, cnt_owner=#{cnt_owner}, cnt_store=#{cnt_store}, cnt_complete=#{cnt_complete}, cnt_contract_complete=#{cnt_contract_complete}, cnt_empty=#{cnt_empty}, total_monthly_rent=#{total_monthly_rent}, total_deposit=#{total_deposit} where bno=#{bno}
+	</update>
+	
+	<update id="updateMphone">
+		update building set mphone=#{mphone} where mno=#{mno}
+	</update>
+	
+	<update id="updateOwnerInfo">
+		update building set ophone=#{ophone}, obirth=#{obirth} where ono=#{ono}
+	</update>
+	
+	<delete id="delete">
+		delete from building where bno=#{bno}
+	</delete>
+</mapper>

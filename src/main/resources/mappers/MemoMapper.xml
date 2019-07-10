@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webaid.mappers.MemoMapper">
+
+	<select id="selectAll" resultType="MemoVO">
+		select * from memo
+	</select>
+	
+	<select id="selectOne" resultType="MemoVO">
+		select * from memo where no=#{no}
+	</select>
+	
+	<select id="selectByMnoDate" resultType="MemoVO">
+		select * from memo where mno=#{mno} and mdate like concat ('%',#{mdate}, '%')
+	</select>
+	
+	<insert id="register">
+		insert into memo values(0, #{mno}, #{mdate}, #{content})
+	</insert>
+	
+	<update id="update">
+		update memo set mdate=#{mdate}, content=#{content} where no=#{no}
+	</update>
+	
+	<delete id="delete">
+		delete from memo where no=#{no}
+	</delete>
+</mapper>

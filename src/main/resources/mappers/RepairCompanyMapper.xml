@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webaid.mappers.RepairCompanyMapper">
+
+	<select id="selectAll" resultType="RepairCompanyVO">
+		select * from repair_company order by no asc;
+	</select>
+	
+	<select id="selectOne" resultType="RepairCompanyVO">
+		select * from repair_company where no=#{no}
+	</select>
+	
+	<select id="listSearch" resultType="RepairCompanyVO">
+		select * from repair_company <include refid="search"></include> order by name asc limit #{pageStart},#{perPageNum}
+	</select>
+	
+	<sql id="search">
+		<if test="searchType=='a'.toString()">
+			where addr like concat('%',#{keyword1},'%') and business_area like concat('%',#{keyword2},'%')
+		</if>
+		<if test="searchType=='r'.toString()">
+			where repairtype like concat('%',#{keyword3},'%')
+		</if>
+		<if test="searchType=='ar'.toString()">
+			where addr like concat('%',#{keyword1},'%') and business_area like concat('%',#{keyword2},'%') and repairtype like concat('%',#{keyword3},'%')
+		</if>
+	</sql>
+	
+	<select id="listSearchCount" resultType="int">
+		select count(no) from repair_company <include refid="search"></include>
+	</select>
+	
+	<insert id="register">
+		insert into repair_company values(0, #{bno}, #{bname}, #{rno}, #{state}, #{room_type}, #{pay_type}, #{tenant}, #{phone});
+	</insert>
+	
+	<update id="update">
+		update repair_company set rno=#{rno}, state=#{state}, room_type=#{room_type}, pay_type=#{pay_type}, tenant=#{tenant}, phone=#{phone}, check_in=#{check_in}, check_out=#{check_out}, deposit=#{deposit}, monthly_rent=#{monthly_rent}, hope_price=#{hope_price}, selling_type=#{selling_type}, repair=#{repair} where no=#{no}
+	</update>
+	
+	<delete id="delete">
+		delete from repair_company where bno=#{bno}
+	</delete>
+</mapper>

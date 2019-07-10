@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webaid.mappers.RoomMapper">
+
+	<select id="selectAll" resultType="RoomVO">
+		select * from room order by rno asc;
+	</select>
+	
+	<select id="selectOne" resultType="RoomVO">
+		select * from room where no=#{no}
+	</select>
+	
+	<select id="selectByBno" resultType="RoomVO">
+		select * from room where bno=#{bno} order by rno asc;
+	</select>
+	
+	<select id="selectByBnoState" resultType="RoomVO">
+		select * from room where bno=#{bno} and state=#{state} order by rno asc;
+	</select>
+	
+	<select id="selectByDate" resultType="RoomVO">
+		select * from room where bno=#{bno} and check_in like concat('%',#{check_in},'%') or check_out like concat('%', #{check_in},'%')
+	</select>
+	
+	<select id="selectByChkIn" resultType="RoomVO">
+		select * from room where bno=#{bno} and check_in like concat ('%',#{check_in},'%')
+	</select>
+	
+	<select id="selectByChkOut" resultType="RoomVO">
+		select * from room where bno=#{bno} and check_out like concat ('%',#{check_out},'%')
+	</select>
+	
+	<select id="selectByAddr" resultType="RoomVO">
+		select * from room where baddr like concat('%',#{baddr},'%') and state='공실'
+	</select>
+	
+	<insert id="register">
+		insert into room values(0, #{bno}, #{bname}, #{rno}, #{state}, #{room_type}, #{pay_type}, #{tenant}, #{phone}, #{check_in}, #{check_out}, #{deposit}, #{monthly_rent}, #{hope_price}, #{selling_type}, #{repair}, #{company}, #{company_call}, #{downpayment});
+	</insert>
+	
+	<update id="update">
+		update room set rno=#{rno}, state=#{state}, room_type=#{room_type}, pay_type=#{pay_type}, tenant=#{tenant}, phone=#{phone}, check_in=#{check_in}, check_out=#{check_out}, deposit=#{deposit}, monthly_rent=#{monthly_rent}, hope_price=#{hope_price}, selling_type=#{selling_type}, repair=#{repair}, company=#{company}, company_call=#{company_call}, downpayment=#{downpayment} where no=#{no}
+	</update>
+	
+	<delete id="delete">
+		delete from room where no=#{no}
+	</delete>
+</mapper>

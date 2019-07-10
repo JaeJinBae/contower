@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webaid.mappers.EmptyroomMapper">
+
+	<select id="selectAll" resultType="EmptyroomVO">
+		select * from emptyroom
+	</select>
+	
+	<select id="selectOne" resultType="EmptyroomVO">
+		select * from emptyroom where no=#{no}
+	</select>
+	
+	<select id="listSearch" resultType="EmptyroomVO">
+		select * from emptyroom <include refid="search"></include> order by bno desc, rno asc, no desc limit #{pageStart},#{perPageNum}  
+	</select>
+	
+	<sql id="search">
+		<if test="searchType=='a'.toString()">
+			where baddr_old like concat('%',#{keyword1},'%')
+		</if>
+		<if test="searchType=='r'.toString()">
+			where room_type like concat('%',#{keyword2},'%')
+		</if>
+		<if test="searchType=='ar'.toString()">
+			where baddr_old like concat('%',#{keyword1},'%') and room_type like concat('%',#{keyword2},'%')
+		</if>
+	</sql>
+	
+	<select id="listSearchCount" resultType="int">
+		select count(no) from emptyroom <include refid="search"></include>
+	</select>
+	
+	<insert id="register">
+		insert into emptyroom values(0, #{rno}, #{room_type}, #{rpw}, #{hope_price}, #{selling_type}, #{bno}, #{bname}, #{baddr_old}, #{baddr_new}, #{bpw}, #{heating}, #{boption}, #{completion_date}, #{mno}, #{mphone})
+	</insert>
+	
+	<update id="update">
+		update emptyroom set rpw=#{rpw}, bpw=#{bpw}, heating=#{heating}, boption=#{boption}, completion_date=#{completion_date}, mno=#{mno}, mphone=#{mphone} where no=#{no} and bno=#{bno}
+	</update>
+	
+	<update id="updateByBuiInfo">
+		update emptyroom set bname=#{bname}, baddr_old=#{baddr_old}, baddr_new=#{baddr_new}, bpw=#{bpw}, heating=#{heating}, boption=#{boption}, completion_date=#{completion_date} where bno=#{bno}
+	</update>
+	
+	<update id="updateMphone">
+		update emptyroom set mphone=#{mphone} where mno=#{mno}
+	</update>
+	
+	<delete id="delete">
+		delete from emptyroom where bno=#{bno} and rno=#{rno}
+	</delete>
+</mapper>

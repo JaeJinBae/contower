@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webaid.mappers.MonthlyRentRecordMapper">
+
+	<select id="selectAll" resultType="MonthlyRentRecordVO">
+		select * from monthly_rent_record order by no asc;
+	</select>
+	
+	<select id="selectOne" resultType="MonthlyRentRecordVO">
+		select * from monthly_rent_record where no=#{no}
+	</select>
+	
+	<select id="selectByBnoYear" resultType="MonthlyRentRecordVO">
+		select * from monthly_rent_record where bno=#{bno} and record_year=#{record_year} order by rno asc
+	</select>
+	
+	<insert id="register">
+		insert into monthly_rent_record values(0, #{bno}, #{rno}, #{record_year}, '', '', '', '', '', '', '', '', '', '', '', '')
+											,(0, #{bno}, #{rno}, #{record_year}-1, '', '', '', '', '', '', '', '', '', '', '', '')
+	</insert>
+	
+	<update id="update1">
+		update monthly_rent_record set january=#{january} where bno=#{bno} and rno=#{rno} and record_year=#{record_year} 
+	</update>
+	
+	<update id="update2">
+		update monthly_rent_record set february=#{february} where bno=#{bno} and rno=#{rno} and record_year=#{record_year} 
+	</update>
+	
+	<update id="update3">
+		update monthly_rent_record set march=#{march} where bno=#{bno} and rno=#{rno} and record_year=#{record_year} 
+	</update>
+	
+	<update id="update4">
+		update monthly_rent_record set april=#{april} where bno=#{bno} and rno=#{rno} and record_year=#{record_year} 
+	</update>
+	
+	<update id="update5">
+		update monthly_rent_record set may=#{may} where bno=#{bno} and rno=#{rno} and record_year=#{record_year} 
+	</update>
+	
+	<update id="update6">
+		update monthly_rent_record set june=#{june} where bno=#{bno} and rno=#{rno} and record_year=#{record_year} 
+	</update>
+	
+	<update id="update7">
+		update monthly_rent_record set july=#{july} where bno=#{bno} and rno=#{rno} and record_year=#{record_year} 
+	</update>
+	
+	<update id="update8">
+		update monthly_rent_record set august=#{august} where bno=#{bno} and rno=#{rno} and record_year=#{record_year} 
+	</update>
+	
+	<update id="update9">
+		update monthly_rent_record set september=#{september} where bno=#{bno} and rno=#{rno} and record_year=#{record_year} 
+	</update>
+	
+	<update id="update10">
+		update monthly_rent_record set october=#{october} where bno=#{bno} and rno=#{rno} and record_year=#{record_year} 
+	</update>
+	
+	<update id="update11">
+		update monthly_rent_record set november=#{november} where bno=#{bno} and rno=#{rno} and record_year=#{record_year} 
+	</update>
+	
+	<update id="update12">
+		update monthly_rent_record set december=#{december} where bno=#{bno} and rno=#{rno} and record_year=#{record_year} 
+	</update>
+	
+	<delete id="delete">
+		delete from monthly_rent_record where bno=#{bno} and rno=#{rno}
+	</delete>
+</mapper>
