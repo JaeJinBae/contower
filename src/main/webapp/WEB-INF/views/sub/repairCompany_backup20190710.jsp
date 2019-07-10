@@ -286,7 +286,7 @@ $(function(){
     	}
     	
     	k1 = sido;
-    	k2 = sigungu;
+    	k2 = sigungu; 
     	k3 = rtype;
     	
     	if(k1.length == 0 && k3.length == 0){
