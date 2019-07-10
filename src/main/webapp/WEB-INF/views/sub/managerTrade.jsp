@@ -129,9 +129,13 @@
 	}
 	.searchWrap > select{
 		font-size: 15px;
+		padding: 3px;
+		vertical-align: middle;
 	}
 	.searchWrap > input{
 		font-size: 15px;
+		padding: 3px;
+		vertical-align: middle;
 	}
 	.searchWrap > button{
 		background: #105340;
