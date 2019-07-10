@@ -518,6 +518,8 @@ $(function(){
 	
 	//뒤로가기 누른 경우
 	$(document).on("click", "#backBtn", function(){
+		$(".searchWrap > select > option:nth-child(1)").prop("selected", true);
+		$(".searchWrap > select[name='addr_sigungu']").html("<option value=''>시군구 선택</option>");
 		$(".detailIconWrap > .detailLeft").html("");
 		$(".detailIconWrap").css("display", "none");
 		$(".bigIconWrap").css("display","block");
