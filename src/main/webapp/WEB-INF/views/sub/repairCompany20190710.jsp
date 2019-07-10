@@ -461,7 +461,8 @@ $(function(){
 		
 		var selectItem = $(this).find("input[name='itemVal']").val();
 		$("#selectUnderVal").val(selectItem);
-		
+		var info = {page:1, perPageNum:10, searchType:"r", keyword1:"", keyword2:"", keyword3:selectItem};
+		draw_repairCompany(info);
 	});
 		
 	$(".searchWrap > select[name='addr_sido']").change(function(){
@@ -475,7 +476,7 @@ $(function(){
 		}
 	});
 	
-	//수리업체 searchWrap에서 버튼 클릭
+	//검색 버튼 클릭
 	$(document).on("click", ".searchWrap > button", function(){
 		var s=""; 
 		var k1="";
@@ -484,7 +485,7 @@ $(function(){
 		
 		var sido = $(".searchWrap > select[name='addr_sido'] > option:selected").text();
     	var sigungu = $(".searchWrap > select[name='addr_sigungu']").val();
-    	var rtype = $(".searchWrap > input[name='repairtype']").val();
+    	var rtype = $("#selectUnderVal").val();
     	
     	if(sido == "도시 선택"){
     		sido = "";
@@ -492,7 +493,7 @@ $(function(){
     	
     	k1 = sido;
     	k2 = sigungu;
-    	k3 = "";
+    	k3 = rtype;
     	
     	if(k1.length == 0 && k3.length == 0){
     		s = "n";
