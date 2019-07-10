@@ -400,10 +400,10 @@ $(function(){
 		var k3="";
 		
 		var sido_sigungu = $(".sectionWrap > #selAddr").val();
-    	var dong = $(".searchWrap > input[name='addr_dong']").val();
     	var tradePrice1 = $(".searchWrap > input[name='tradePrice1']").val();
     	var tradePrice2 = $(".searchWrap > input[name='tradePrice2']").val();
     	
+    	k1 = sido_sigungu;
     	k2 = tradePrice1;
     	k3 = tradePrice2;
     	
