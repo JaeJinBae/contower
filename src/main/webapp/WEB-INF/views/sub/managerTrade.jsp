@@ -175,18 +175,22 @@
 		float: right;
 	}
 	.tbl > table{
-		width: 50%;
+		width: 48%;
 		height:350px;
-		float:left;
+	}
+	.tbl > .leftTbl{
+		float: left;
+	}
+	.tbl > .rightTbl{
+		float: right;
 	}
 	.tbl > table tr{
 		
 	}
 	.tbl > table tr > th{
-		background: #7b93a8;
-		color: #fefefe;
+		color: #fff;
 		font-size: 15px;
-		border: 1px solid lightgray;
+		border: 1px solid #fff;
 	}
 	.tbl > table tr:nth-child(1) > th{ 
 		
@@ -195,7 +199,8 @@
 		font-size: 15px;
 		padding: 0 2px;
 		text-align: center;
-		border: 1px solid lightgray;
+		color: #fff;
+		border: 1px solid #fff;
 	}
 	
 	
@@ -267,26 +272,27 @@ function draw_trade(info){
 		$(json.list).each(function(){
 			addrArr = this.baddr.split(" ");
 			str += "<div class='tbl'><h2>"+addrArr[2]+" 건물 ("+this.bno+")</h2>"
-				+ "<table><tr><th rowspan='5'>건물현황</th><th>준공일</th><td>"+this.completion_date+"</td></tr>"
-				+ "<tr><th>대지</th><td>"+this.site+"㎥</td></tr>"
-				+ "<tr><th>연면적</th><td>"+this.gross_area+"㎥</td></tr>"
-				+ "<tr><th>도로</th><td>"+this.road+"</td></tr>"
-				+ "<tr><th>난방</th><td>"+this.heating+"</td></tr>"
-				+ "<tr><th rowspan='6'>방현황</th><th>상가</th><td>"+this.cnt_store+"</td></tr>"
-				+ "<tr><th>원룸</th><td>"+this.cnt_one+"</td></tr>"
-				+ "<tr><th>미니투룸</th><td>"+this.cnt_mitwo+"</td></tr>"
-				+ "<tr><th>투룸</th><td>"+this.cnt_two+"</td></tr>"
-				+ "<tr><th>쓰리룸</th><td>"+this.cnt_three+"</td></tr>"
-				+ "<tr><th>주인세대</th><td>"+this.cnt_owner+"</td></tr>"
-				+ "<tr><th colspan='2'>합계</th><td>"+(Number(this.cnt_store)+Number(this.cnt_one)+Number(this.cnt_mitwo)+Number(this.cnt_two)+Number(this.cnt_three)+Number(this.cnt_owner))+"</td></tr></table>"
-				+ "<table><tr><th rowspan='8'>수익정보</th><th>매매금액</th><td>"+this.trade_price+"</td></tr>"
-				+ "<tr><th>보증금</th><td>"+this.total_deposit+"만원</td></tr>"
-				+ "<tr><th>융자</th><td>"+this.financing+"만원</td></tr>"
-				+ "<tr><th>1년수익</th><td>6600만원</td></tr>"
-				+ "<tr><th>이자<br>(연"+this.interest_percent+"%)</th><td>2100만원</td></tr>"
-				+ "<tr><th>월수익</th><td>"+this.total_monthly_rent+"만원</td></tr>"
-				+ "<tr><th>연수익</th><td>4160만원</td></tr>"
-				+ "<tr><th>연수익률</th><td>11.12%</td></tr></table></div>";
+				+ "<table class='leftTbl'><tr style='background:#ff622c;'><th>매매금액</th><td>"+this.trade_price+"만원</td></tr>"
+				+ "<tr style='background:#f6a285;'><th>보증금</th><td>"+this.total_deposit+"만원</td></tr>"
+				+ "<tr style='background:#febe7a;'><th>융자</th><td>"+this.financing+"만원</td></tr>"
+				+ "<tr style='background:#f6a285;'><th>이자<br>(연"+this.interest_percent+"%)</th><td>2100만원</td></tr>"
+				+ "<tr style='background:#febe7a;border-bottom:10px solid #fff;'><th>1년수익</th><td>6600만원</td></tr>"
+				+ "<tr style='background:#2aa930;'><th>인수금액</th><td>"+this.trade_price+"</td></tr>"
+				+ "<tr style='background:#87c68a;'><th>월수익</th><td>"+this.total_monthly_rent+"만원</td></tr>"
+				+ "<tr style='background:#98cc96;'><th>연수익</th><td>4160만원</td></tr>"
+				+ "<tr style='background:#87c68a;'><th>연수익률</th><td>11.12%</td></tr></table>"
+				+ "<table class='rightTbl'><tr style='background:#cbaf7f;'><th>준공일</th><td>"+this.completion_date+"</td></tr>"
+				+ "<tr style='background:#cbaf7f;'><th>대지</th><td>"+this.site+"㎥</td></tr>"
+				+ "<tr style='background:#cbaf7f;'><th>연면적</th><td>"+this.gross_area+"㎥</td></tr>"
+				+ "<tr style='background:#cbaf7f;'><th>도로</th><td>"+this.road+"</td></tr>"
+				+ "<tr style='background:#cbaf7f;'><th>난방</th><td>"+this.heating+"</td></tr>"
+				+ "<tr style='background:#cbaf7f;'><th>상가</th><td>"+this.cnt_store+"</td></tr>"
+				+ "<tr style='background:#cbaf7f;'><th>원룸</th><td>"+this.cnt_one+"</td></tr>"
+				+ "<tr style='background:#cbaf7f;'><th>미니투룸</th><td>"+this.cnt_mitwo+"</td></tr>"
+				+ "<tr style='background:#cbaf7f;'><th>투룸</th><td>"+this.cnt_two+"</td></tr>"
+				+ "<tr style='background:#cbaf7f;'><th>쓰리룸</th><td>"+this.cnt_three+"</td></tr>"
+				+ "<tr style='background:#cbaf7f;'><th>주인세대</th><td>"+this.cnt_owner+"</td></tr>"
+				+ "<tr style='background:#cbaf7f;'><th>합계</th><td>"+(Number(this.cnt_store)+Number(this.cnt_one)+Number(this.cnt_mitwo)+Number(this.cnt_two)+Number(this.cnt_three)+Number(this.cnt_owner))+"</td></tr></table></div>";
 		});
 		$(".contentWrap > .tblWrap").html(str);
 		
@@ -391,28 +397,20 @@ $(function(){
 		var s="";
 		var k1="";
 		var k2="";
+		var k3="";
 		
 		var sido_sigungu = $(".sectionWrap > #selAddr").val();
-    	
     	var dong = $(".searchWrap > input[name='addr_dong']").val();
-    	var rtype = $(".searchWrap > select[name='room_type']").val();
+    	var tradePrice1 = $(".searchWrap > input[name='tradePrice1']").val();
+    	var tradePrice2 = $(".searchWrap > input[name='tradePrice2']").val();
     	
-    	if(dong.length > 1){
-    		k1 = sido_sigungu+" "+dong;
-    	}else{
-    		k1 = sido_sigungu;
-    	}
-
-    	k2 = rtype;
+    	k2 = tradePrice1;
+    	k3 = tradePrice2;
     	
-    	if(k1.length == 2 && k2.length == 0){
-    		s = "n";
-    	}else if(k1.length >2 && k2.length == 0){
+    	if(k1.length >2 && k2.length == 0){
     		s = "a";
-    	}else if(k1.length == 2 && k2.length > 1){
-    		s = "r";
     	}else if(k1.length >2 && k2.length > 1){
-    		s = "ar";
+    		s = "at";
     	}
     	
 		var page=1;
@@ -420,9 +418,10 @@ $(function(){
 		var searchType=s;
 		var keyword1=k1;
 		var keyword2=k2;
+		var keyword3=k3;
 		
-		var info = {page:page, perPageNum:perPageNum, searchType:searchType, keyword1:keyword1, keyword2:keyword2};
-		draw_emptyroom(info);
+		var info = {page:page, perPageNum:perPageNum, searchType:searchType, keyword1:keyword1, keyword2:keyword2, keyword3:keyword3};
+		draw_trade(info);
 	});
 	
 	//프린트 클릭
@@ -788,22 +787,13 @@ $(function(){
 				<div class="contentWrap">
 					<div class="searchWrap">
 						<input type="text" name="sido_sigungu" value="" readonly>
-						<input type="text" name="addr_dong" placeholder="동을 입력해주세요.">
-						<select name="room_type">
-							<option value="">타입 선택</option>
-							<option value="one">원룸</option>
-							<option value="mitwo">미니투룸</option>
-							<option value="two">투룸</option>
-							<option value="three">쓰리룸</option>
-							<option value="store">상가</option>
-							<option value="owner">주인세대</option>
-						</select>
-						<button>검 색</button>
+						<input type="text" name="tradePrice1" placeholder="숫자만 입력하세요.">만원~<input type="text" name="tradePrice2" placeholder="숫자만 입력하세요.">만원
+					<button>검 색</button>
 						
 						<img id="printBtn" alt="인쇄" title="정보인쇄" src="${pageContext.request.contextPath}/resources/images/icon_printer.png">
 					</div>
 					<div class="tblWrap">
-					
+						
 					</div><!-- tblWrap end -->
 					<div class="page"></div>
 				</div><!-- contentWrap end -->
