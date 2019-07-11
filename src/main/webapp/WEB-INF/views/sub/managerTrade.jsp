@@ -240,6 +240,12 @@
 		color:white;
 	}
 	
+	.footer{
+		width: 100%;
+		height: 100px;
+		background: #1797f8;
+		box-shadow: 0px 0px 20px 0px gray;
+	}
 </style>
 <script>
 function get_tradeAll(info){
@@ -318,6 +324,12 @@ function draw_trade(info){
 		str += "</ul>";
 		
 		$(".contentWrap > .page").html(str);
+		
+		
+		setTimeout(function() {
+			var height = $(".rightAside").css("height");
+			$(".leftAside").css("height", height);
+			}, 50);
 	}	
 }
 
@@ -798,6 +810,7 @@ $(function(){
 					<div class="page"></div>
 				</div><!-- contentWrap end -->
 			</div><!-- sectionWrap end -->
+			<div class="footer"></div>
 		</div><!-- rightAside end -->
 	</div><!-- allWrap end -->
 </body>

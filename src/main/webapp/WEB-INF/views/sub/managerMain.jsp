@@ -198,6 +198,7 @@
 		min-height: 829px;
 		clear: both;
 		padding: 10px;
+		margin-bottom: 70px;
 	}
 	.section{
 		width: 1100px;
@@ -409,6 +410,12 @@
 	.fc_red{
 		color: #c41f2f;
 		font-weight: bold;
+	}
+	.footer{
+		width: 100%;
+		height: 100px;
+		background: #1797f8;
+		box-shadow: 0px 0px 20px 0px gray;
 	}
 </style>
 <script>
@@ -893,7 +900,12 @@ $(function(){
 					</div>
 				</div><!-- section end -->
 			</div><!-- sectionWrap end -->
+			<div class="footer">
+	
+			</div>
 		</div><!-- rightAside end -->
+		
 	</div><!-- allWrap end -->
+	
 </body>
 </html>

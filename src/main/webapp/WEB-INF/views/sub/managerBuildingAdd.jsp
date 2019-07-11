@@ -210,6 +210,7 @@
 		min-height: 829px;
 		clear: both;
 		padding: 10px 0;
+		margin-bottom: 70px;
 	}
 	.section{
 		width: 100%;
@@ -433,6 +434,12 @@
 		color: #999999;
 	}
 	
+	.footer{
+		width: 100%;
+		height: 100px;
+		background: #1797f8;
+		box-shadow: 0px 0px 20px 0px gray;
+	}
 </style>
 <script>
 function inputBirthChk(obj) {
@@ -497,6 +504,9 @@ function add_roomInfo_tbl_tr(){
 		+ "<td><textarea name='repair'></textarea></td></tr>";
 
 	$(".roomInfo > table").append(str);
+	
+	var height = $(".rightAside").css("height");
+	$(".leftAside").css("height", height);
 }
 
 function post_buiInfo(vo){
@@ -680,7 +690,7 @@ function ownerRegister(vo){
 
 $(function(){
 	//기본 방 입력칸 11개 생성
-	for(var i = 0; i < 10; i++){
+	for(var i = 0; i < 19; i++){
 		add_roomInfo_tbl_tr();
 	}
 	
@@ -694,6 +704,8 @@ $(function(){
 				return false;
 			}
 			$(".roomInfoTr:last-child").remove();
+			var height = $(".rightAside").css("height");
+			$(".leftAside").css("height", height);
 		}
 	})
 	
@@ -1178,6 +1190,7 @@ $(function(){
 					</div><!-- formWrap end -->
 				</div><!-- section end -->
 			</div><!-- sectionWrap end -->
+			<div class="footer"></div>
 		</div><!-- rightAside end -->
 	</div><!-- allWrap end -->
 </body>

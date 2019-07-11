@@ -45,16 +45,7 @@
 		background: #fff;
 		z-index: 5;
 	}
-	.menuWrap > ul > li:nth-child(5) > a{
-		color: #fff;
-	}
-	.menuWrap > ul > li:nth-child(5) > .menuBg{
-		display:block !important;
-		position: absolute;
-		top: -18px;
-		left: -44px;
-		z-index: -1;
-	}
+	
 	.rightAside{
 		position: absolute;
 		top: 0;
@@ -94,8 +85,12 @@
 		position: relative;
 	}
 	.tblWrap{
-		width: 550px;
+		width: 590px;
 		margin: 0 auto;
+	}
+	.tblWrap > h3{
+		font-size: 28px;
+		margin: 20px 0;
 	}
 	.tblWrap > table{
 		width: 100%;
@@ -106,7 +101,7 @@
 		border-bottom: 2px solid lightgray;
 	}
 	.tblWrap > table tr > th{
-		width: 140px;
+		width: 160px;
 		font-size: 15px;
 		text-align: left;
 		padding: 15px;
@@ -193,12 +188,95 @@
 		color: gray;
 	}
 	
+	.footer{
+		width: 100%;
+		height: 100px;
+		background: #1797f8;
+		box-shadow: 0px 0px 20px 0px gray;
+	}
 </style>
 <script>
+function get_managerInfo(mno){
+	var dt;
+	$.ajax({
+		url:"${pageContext.request.contextPath}/getManagerInfo/"+mno,
+		type:"post",
+        dataType : 'json',
+        contentType : 'application/json; charset=UTF-8',
+		async:false,
+		success:function(json){
+			dt = json;
+			 
+		},
+		error:function(request,status,error){
+			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+	});
+	return dt;
+}
 
+function draw_managerInfo(mno){
+	var json = get_managerInfo(mno);
+	
+	$(".tblWrap > table tr > td > input[name='id']").val(json.id);
+	$(".tblWrap > table tr > td > input[name='name']").val(json.name);
+	$(".tblWrap > table tr > td > input[name='birth']").val(json.birth);
+	$(".tblWrap > table tr > td > input[name='phone']").val(json.phone);
+	$(".tblWrap > table tr > td > input[name='mail']").val(json.mail);
+	$(".tblWrap > table tr > td > input[name='company_name']").val(json.company_name);
+	$(".tblWrap > table tr > td > input[name='company_num']").val(json.company_num);
+	$(".tblWrap > table tr > td > input[name='company_ceo']").val(json.company_ceo);
+}
+
+function post_managerInfoUpdate(vo){
+	$.ajax({
+		url:"${pageContext.request.contextPath}/managerUpdate",
+		type:"post",
+		data : JSON.stringify(vo),
+        dataType : 'json',
+        contentType : 'application/json; charset=UTF-8',
+		async:false,
+		success:function(json){
+			alert("정보 변경이 완료되었습니다.");
+			$("#seName").val(json.name);
+			$("#seMphone").val(json.phone);
+			$(".myInfo > p").eq(0).text(json.name+"("+json.id+")님 환영합니다.");
+		},
+		error:function(request,status,error){
+			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+	});
+}
 
 $(function(){
+	draw_managerInfo($("#seMno").val());
 	
+	$(".btnWrap > p").click(function(){
+		var btnIdx = $(this).index();
+		if(btnIdx ==0){
+			var mno = $("#seMno").val();
+			var name = $(".tblWrap > table tr > td > input[name='name']").val();
+			var birth = $(".tblWrap > table tr > td > input[name='birth']").val();
+			var phone = $(".tblWrap > table tr > td > input[name='phone']").val();
+			var mail = $(".tblWrap > table tr > td > input[name='mail']").val();
+			var pw = $(".tblWrap > table tr > td > input[name='pw']").val();
+			var pwChk = $(".tblWrap > table tr > td > input[name='pwChk']").val();
+			var company_name = $(".tblWrap > table tr > td > input[name='company_name']").val();
+			var company_num = $(".tblWrap > table tr > td > input[name='company_num']").val();
+			var company_ceo = $(".tblWrap > table tr > td > input[name='company_ceo']").val();
+			
+			if(pw != pwChk){
+				alert("비밀번호가 일치하지 않습니다.");
+				return false;
+			}
+			
+			var vo = {mno:mno, name:name, birth:birth, phone:phone, mail:mail, pw:pw, company_name:company_name, company_num:company_num, company_ceo:company_ceo};
+			
+			post_managerInfoUpdate(vo);
+		}else if(btnIdx == 1){
+			location.replace("${pageContext.request.contextPath}/mMain");
+		}
+	});
 });
 </script>
 </head>
@@ -219,7 +297,8 @@ $(function(){
 			<div class="sectionWrap">
 				<input id="selAddr" type="hidden" name="addr" value="">
 				<div class="section">
-					<div class="tblWrap">
+					<div class="tblWrap"> 
+						<h3>회원정보 수정</h3>
 						<table>
 							<tr>
 								<th><span class="fc_red">* </span>아이디</th>
@@ -269,6 +348,7 @@ $(function(){
 					</div><!-- tblWrap end -->
 				</div><!-- section end -->
 			</div><!-- sectionWrap end -->
+			<div class="footer"></div>
 		</div><!-- rightAside end -->
 	</div><!-- allWrap end -->
 </body>

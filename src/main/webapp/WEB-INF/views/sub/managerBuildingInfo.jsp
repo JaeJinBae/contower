@@ -86,6 +86,7 @@
 		min-height: 829px;
 		clear: both;
 		padding: 23px;
+		margin-bottom: 70px;
 	}
 	.section{
 		width: 1100px;
@@ -268,6 +269,13 @@
 		padding: 7px;
 		resize: none;
 		font-size: 15px; 
+	}
+	
+	.footer{
+		width: 100%;
+		height: 100px;
+		background: #1797f8;
+		box-shadow: 0px 0px 20px 0px gray;
 	}
 </style>
 <script>
@@ -1159,6 +1167,7 @@ $(function(){
 					</div><!-- tblBottom end -->
 				</div><!-- section end -->
 			</div><!-- sectionWrap end -->
+			<div class="footer"></div>
 		</div><!-- rightAside end -->
 	</div><!-- allWrap end -->
 </body>
