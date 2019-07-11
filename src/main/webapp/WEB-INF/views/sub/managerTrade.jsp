@@ -137,7 +137,7 @@
 		font-size: 15px;
 		padding: 3px;
 		text-align: right;
-		vertical-align: middle;
+		vertical-align: middle; 
 	}
 	.searchWrap > input:nth-child(1){
 		text-align: center;
