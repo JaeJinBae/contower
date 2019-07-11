@@ -652,7 +652,7 @@ $(function(){
 		</div>
 	</div><!-- popup_roomRegister end -->
 	
-	<div class="popup_roomUpdateComplete popup_content">
+	<div class="popup_roomUpdateComplete popup_roomUpdate popup_content">
 		<h2>방정보 수정<input type="hidden" name="no" value=""><img src="${pageContext.request.contextPath}/resources/images/icon_x.png" title="닫기"></h2>
 		<table>
 			<tr>
@@ -708,7 +708,7 @@ $(function(){
 		</div>
 	</div><!-- popup_roomUpdateComplete end -->
 	
-	<div class="popup_roomUpdateEmpty popup_content">
+	<div class="popup_roomUpdateEmpty popup_roomUpdate popup_content">
 		<h2>방정보 수정<input type="hidden" name="no" value=""><img src="${pageContext.request.contextPath}/resources/images/icon_x.png" title="닫기"></h2>
 		<table>
 			<tr>
@@ -755,7 +755,7 @@ $(function(){
 		</div>
 	</div><!-- popup_roomUpdateEmpty end -->
 	
-	<div class="popup_roomUpdateContractComp popup_content">
+	<div class="popup_roomUpdateContractComp popup_roomUpdate popup_content">
 		<h2>방정보 수정<input type="hidden" name="no" value=""><img src="${pageContext.request.contextPath}/resources/images/icon_x.png" title="닫기"></h2>
 		<table>
 			<tr>
