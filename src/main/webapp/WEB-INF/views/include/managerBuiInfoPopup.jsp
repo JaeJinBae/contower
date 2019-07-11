@@ -558,7 +558,7 @@ $(function(){
 	</div><!-- popup_buiUpdate end -->
 	
 	<div class="popup_repair popup_content">
-		<h2>수리내역<input type="hidden" name="rno" value=""><img src="${pageContext.request.contextPath}/resources/images/icon_x.png" title="닫기"></h2>
+		<h2>수리내역<input type="hidden" name="no" value=""><img src="${pageContext.request.contextPath}/resources/images/icon_x.png" title="닫기"></h2>
 		<table>
 			<tr>
 				<th>내용</th>
@@ -631,7 +631,7 @@ $(function(){
 				<th>중개인</th>
 				<td><input type="text" name="company"></td>
 				<th>중개인<br>연락처</th>
-				<td><input type="text" name="company_call"></td>
+				<td><input type="text" name="company_call" onKeyup="inputPhoneNumber(this);" maxlength="13"></td>
 			</tr>
 			<tr>
 				<th>판매유형</th>
@@ -658,7 +658,7 @@ $(function(){
 			<tr>
 				<th>상태</th>
 				<td>
-					<select name="state">
+					<select name="state" disabled>
 						<option value="입주완료">입주완료</option>
 						<option value="공실">공실</option>
 						<option value="계약완료">계약완료</option>
@@ -706,7 +706,7 @@ $(function(){
 			<p>저장</p>
 			<p>삭제</p>
 		</div>
-	</div><!-- popup_roomUpdate end -->
+	</div><!-- popup_roomUpdateComplete end -->
 	
 	<div class="popup_roomUpdateEmpty popup_content">
 		<h2>방정보 수정<input type="hidden" name="no" value=""><img src="${pageContext.request.contextPath}/resources/images/icon_x.png" title="닫기"></h2>
@@ -714,7 +714,7 @@ $(function(){
 			<tr>
 				<th>상태</th>
 				<td>
-					<select name="state">
+					<select name="state" disabled>
 						<option value="공실">공실</option>
 						<option value="입주완료">입주완료</option>
 						<option value="계약완료">계약완료</option>
@@ -753,7 +753,7 @@ $(function(){
 			<p>저장</p>
 			<p>삭제</p>
 		</div>
-	</div><!-- popup_roomUpdate end -->
+	</div><!-- popup_roomUpdateEmpty end -->
 	
 	<div class="popup_roomUpdateContractComp popup_content">
 		<h2>방정보 수정<input type="hidden" name="no" value=""><img src="${pageContext.request.contextPath}/resources/images/icon_x.png" title="닫기"></h2>
@@ -761,7 +761,7 @@ $(function(){
 			<tr>
 				<th>상태</th>
 				<td>
-					<select name="state">
+					<select name="state" disabled>
 						<option value="공실">공실</option>
 						<option value="입주완료">입주완료</option>
 						<option value="계약완료">계약완료</option>
@@ -815,5 +815,5 @@ $(function(){
 			<p>저장</p>
 			<p>삭제</p>
 		</div>
-	</div><!-- popup_roomUpdate end -->
+	</div><!-- popup_roomUpdateContractComp end -->
 	

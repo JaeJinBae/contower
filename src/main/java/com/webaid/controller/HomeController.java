@@ -744,6 +744,7 @@ public class HomeController {
 		try {
 			String deposit = "";
 			String monthly_rent = "";
+			String repair = info.get("repair");
 			if(info.get("deposit") != "0"){
 				deposit = info.get("deposit");
 				total_deposit += Integer.parseInt(info.get("deposit"));
@@ -752,7 +753,9 @@ public class HomeController {
 				monthly_rent = info.get("monthly_rent");
 				total_monthly_rent += Integer.parseInt(info.get("monthly_rent"));
 			}
-			
+			if(repair.length() < 2){
+				repair = "";
+			}
 			rvo.setNo(Integer.parseInt(info.get("no")));
 			rvo.setBno(Integer.parseInt(info.get("bno")));
 			rvo.setBname(info.get("bname"));
@@ -768,7 +771,7 @@ public class HomeController {
 			rvo.setMonthly_rent(Integer.parseInt(monthly_rent));
 			rvo.setHope_price(info.get("hope_price"));
 			rvo.setSelling_type(info.get("selling_type"));
-			rvo.setRepair(info.get("reapair"));
+			rvo.setRepair(repair);
 			rvo.setCompany(info.get("company"));
 			rvo.setCompany_call(info.get("company_call"));
 			rvo.setDownpayment(Integer.parseInt(info.get("downpayment")));
@@ -1017,7 +1020,7 @@ public class HomeController {
 		
 		try {
 			vo.setBno(Integer.parseInt(info.get("bno")));
-			vo.setRno(Integer.parseInt(info.get("rno")));
+			vo.setNo(Integer.parseInt(info.get("no")));
 			vo.setRepair(info.get("repair"));
 			
 			rService.updateRepair(vo);

@@ -778,9 +778,9 @@ $(function(){
 	//종합현황 수리내역 클릭
 	$(document).on("click", "#totalInfo > table .tblContentTr > td:last-child", function(){
 		var repairContent = $(this).find(".repairSimple").text();
-		var rno = $(this).parent().find("td").eq(1).text().split("호")[0];
+		var no = $(this).parent().find("td").eq(0).find("input[name='no']").val();
 		
-		$(".popup_repair > h2 > input[name='rno']").val(rno);
+		$(".popup_repair > h2 > input[name='no']").val(no);
 		$(".popup_repair > table tr > td > textarea").val(repairContent);
 		$(".popup_repair").css("display","block");
 		$(".popupWrap").css("display", "block");
@@ -790,8 +790,8 @@ $(function(){
 	$(document).on("click", ".popup_repair > .popup_btnWrap > p", function(){
 		var repairContent = $(".popup_repair > table tr > td > textarea").val();
 		var bno = $(".tblTop > table tr > td > input[name=bno]").val();
-		var rno = $(".popup_repair > h2 > input[name='rno']").val();
-		var info = {bno:bno, rno:rno, repair:repairContent};
+		var no = $(".popup_repair > h2 > input[name='no']").val();
+		var info = {bno:bno, no:no, repair:repairContent};
 		post_updateRepair(info);
 	})
 	
@@ -836,7 +836,7 @@ $(function(){
 				downpayment = 0;
 			}
 			if(repair.length == 0){
-				repair = ""
+				repair = " "
 			}
 			
 			var vo = {
@@ -923,21 +923,14 @@ $(function(){
 		}
 	});
 	
-	$(document).on("click", "#totalInfo > table .tblContentTr > td:last-child", function(){
-		console.log('asd');
-		
-	});
-	
-	//방정보 수정 팝업에서 입주상태 공실로 바뀐경우
-	$(".popup_roomUpdate > table tr > td > select[name='state']").change(function(){
-		var res = $(this).val();
-		if(res == "공실"){
-			$(".popup_roomUpdate > table tr > td > input[name='tenant']").val("");
-			$(".popup_roomUpdate > table tr > td > input[name='phone']").val("");
-			$(".popup_roomUpdate > table tr > td > input[name='check_in']").val("");
-			$(".popup_roomUpdate > table tr > td > input[name='check_out']").val("");
-			$(".popup_roomUpdate > table tr > td > input[name='deposit']").val(0);
-			$(".popup_roomUpdate > table tr > td > input[name='monthly_rent']").val(0);
+	//공실수정 팝업에서 버튼클릭
+	$(".popup_roomUpdateEmpty > .popup_roomUpdate_btn_wrap > p").click(function(){
+		var idx = $(this).index();
+		if(idx == 0){
+			
+			
+		}else{
+			
 		}
 	});
 	

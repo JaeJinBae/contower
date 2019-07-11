@@ -45,7 +45,7 @@
 	</update>
 	
 	<update id="updateRepair">
-		update room set repair=#{repair} where bno=#{bno} and rno=#{rno}
+		update room set repair=#{repair} where bno=#{bno} and no=#{no}
 	</update>
 	
 	<delete id="delete">
