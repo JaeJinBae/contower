@@ -126,6 +126,7 @@
 		width: 100%;
 		margin-bottom: 20px;
 		overflow: hidden;
+		font-size: 15px;
 	}
 	.searchWrap > select{
 		font-size: 15px;
@@ -135,10 +136,14 @@
 	.searchWrap > input{
 		font-size: 15px;
 		padding: 3px;
+		text-align: right;
 		vertical-align: middle;
 	}
+	.searchWrap > input:nth-child(1){
+		text-align: center;
+	}
 	.searchWrap > button{
-		background: #105340;
+		background: #4d96a8;
 		font-size: 15px;
 		color: #fefefe;
 		padding: 5px 10px;
