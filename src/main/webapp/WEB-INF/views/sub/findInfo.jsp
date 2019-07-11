@@ -283,7 +283,7 @@ $(function(){
 							</tr>
 						</table>
 						<div class="tblFindPwBtnWrap">
-							<p>비밀번호 찾기</p>
+							<p style="width:135px;">비밀번호 찾기</p>
 							<p>뒤로가기</p>
 						</div>
 					</div><!-- tblFindPw end -->

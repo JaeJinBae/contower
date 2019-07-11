@@ -67,7 +67,7 @@
 		border-bottom: 2px solid lightgray;
 	}
 	.tblWrap > table tr > th{
-		width: 140px;
+		width: 155px;
 		font-size: 15px;
 		text-align: left;
 		padding: 15px;
@@ -144,6 +144,53 @@
 	}
 </style>
 <script>
+function inputBirthChk(obj) {
+	var number = obj.value.replace(/[^0-9]/g, "");
+	var birth = "";
+	
+	if(number.length < 5) {
+		return number;
+	} else if(number.length < 7) {
+		birth += number.substr(0, 4);
+		birth += "-";
+		birth += number.substr(4);
+	}else {
+		birth += number.substr(0, 4);
+		birth += "-";
+		birth += number.substr(4, 2);
+		birth += "-";
+		birth += number.substr(6);
+	}
+	
+	obj.value = birth;
+}
+
+function inputPhoneNumber(obj) {
+	var number = obj.value.replace(/[^0-9]/g, "");
+	var phone = "";
+	
+	if(number.length < 4) {
+		return number;
+	} else if(number.length < 7) {
+		phone += number.substr(0, 3);
+		phone += "-";
+		phone += number.substr(3);
+	} else if(number.length < 11) {
+		phone += number.substr(0, 3);
+		phone += "-";
+		phone += number.substr(3, 3);
+		phone += "-";
+		phone += number.substr(6);
+	} else {
+		phone += number.substr(0, 3);
+		phone += "-";
+		phone += number.substr(3, 4);
+		phone += "-";
+		phone += number.substr(7);
+	}
+	obj.value = phone;
+}
+
 function managerIdChk(id){
 	$.ajax({
 		url:"${pageContext.request.contextPath}/managerIdChk",
@@ -318,11 +365,11 @@ $(function(){
 						</tr>
 						<tr>
 							<th><span class="fc_red">* </span>생년월일</th>
-							<td><input type="text" name="birth" placeholder="ex) 1999-09-09"></td>
+							<td><input type="text" name="birth" placeholder="ex) 1999-09-09" onKeyup='inputBirthChk(this);' maxlength='10'></td>
 						</tr>
 						<tr>
 							<th><span class="fc_red">* </span>휴대전화</th>
-							<td><input type="text" name="phone" placeholder="ex) 010-1111-2222"></td>
+							<td><input type="text" name="phone" placeholder="ex) 010-1111-2222" onKeyup="inputPhoneNumber(this);" maxlength="13"></td>
 						</tr>
 						<tr>
 							<th><span class="fc_red">* </span>이메일</th>

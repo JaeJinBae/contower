@@ -831,6 +831,75 @@ $(function(){
 			var company_call = $(".popup_roomRegister > table tr > td > input[name='company_call']").val();
 			var downpayment = $(".popup_roomRegister > table tr > td > input[name='downpayment']").val();
 			
+			if(rno == "" || rno.length == 0){
+				alert("호실을 입력해주세요.");
+				return false;
+			}
+			if(state == "공실"){
+				if(rpw == "" || rpw.length == 0){
+					alert("방 비밀번호를 입력해주세요.");
+					return false;
+				}
+				if(hope_price == "" || hope_price.length == 0){
+					alert("희망금액을 입력해주세요.");
+					return false;
+				}
+			}else if(state == "입주와료"){
+				if(tenant == "" || tenant.length == 0){
+					alert("이름을 입력해주세요.");
+					return false;
+				}
+				if(phone == "" || phone.length == 0){
+					alert("연락처를 입력해주세요.");
+					return false;
+				}
+				if(check_in == "" || check_in.length == 0){
+					alert("입주일을 입력해주세요.");
+					return false;
+				}
+				if(check_out == "" || check_out.length == 0){
+					alert("퇴실일을 입력해주세요.");
+					return false;
+				}
+				if(deposit == "" || deposit.length == 0){
+					alert("보증금을 입력해주세요.");
+					return false;
+				}
+				if(monthly_rent == "" || monthly_rent.length == 0){
+					alert("월세를 입력해주세요.");
+					return false;
+				}
+			}else if(state == "계약완료"){
+				if(check_in == "" || check_in.length == 0){
+					alert("입주일을 입력해주세요.");
+					return false;
+				}
+				if(check_out == "" || check_out.length == 0){
+					alert("퇴실일을 입력해주세요.");
+					return false;
+				}
+				if(deposit == "" || deposit.length == 0){
+					alert("보증금을 입력해주세요.");
+					return false;
+				}
+				if(monthly_rent == "" || monthly_rent.length == 0){
+					alert("월세를 입력해주세요.");
+					return false;
+				}
+				if(downpayment == "" || downpayment.length == 0){
+					alert("계약금을 입력해주세요.");
+					return false;
+				}
+				if(company == "" || company.length == 0){
+					alert("중개인을 입력해주세요.");
+					return false;
+				}
+				if(company_call == "" || company_call.length == 0){
+					alert("중개인 연락처를 입력해주세요.");
+					return false;
+				}
+			}
+			
 			if(deposit == ""){
 				deposit = 0;
 			}
@@ -943,7 +1012,19 @@ $(function(){
 			var rpw = $(".popup_roomUpdateEmpty > table tr > td > input[name='rpw']").val();
 			var hope_price = $(".popup_roomUpdateEmpty > table tr > td > input[name='hope_price']").val();
 			var selling_type = $(".popup_roomUpdateEmpty > table tr > td > select[name='selling_type']").val();
-			 
+			
+			if(rno == "" || rno.length == 0){
+				alert("호실을 입력해주세요.");
+				return false;
+			}
+			if(rpw == "" || rpw.length == 0){
+				alert("방 비밀번호를 입력해주세요.");
+				return false;
+			}
+			if(hope_price == "" || hope_price.length == 0){
+				alert("희망금액을 입력해주세요.");
+				return false;
+			}
 			var vo = {
 					no:no, bno:bno, bname:bname, rno:rno, state:state, room_type:room_type, pay_type:info.pay_type, tenant:"", phone:"", check_in:"", check_out:"", deposit:"0", 
 					monthly_rent:"0", hope_price:hope_price, selling_type:selling_type, repair:"", rpw:rpw, company:"", company_call:"", downpayment:"0", memo:"", prevState:info.state
@@ -983,6 +1064,39 @@ $(function(){
 			var company = $(".popup_roomUpdateContractComp > table tr > td > input[name='company']").val();
 			var company_call = $(".popup_roomUpdateContractComp > table tr > td > input[name='company_call']").val();
 			var memo = $(".popup_roomUpdateContractComp > table tr > td > textarea[name='memo']").val();
+
+			if(rno == "" || rno.length == 0){
+				alert("호실을 입력해주세요.");
+				return false;
+			}
+			if(check_in == "" || check_in.length == 0){
+				alert("입주일을 입력해주세요.");
+				return false;
+			}
+			if(check_out == "" || check_out.length == 0){
+				alert("퇴실일을 입력해주세요.");
+				return false;
+			}
+			if(deposit == "" || deposit.length == 0){
+				alert("보증금을 입력해주세요.");
+				return false;
+			}
+			if(monthly_rent == "" || monthly_rent.length == 0){
+				alert("월세를 입력해주세요.");
+				return false;
+			}
+			if(downpayment == "" || downpayment.length == 0){
+				alert("계약금을 입력해주세요.");
+				return false;
+			}
+			if(company == "" || company.length == 0){
+				alert("중개인을 입력해주세요.");
+				return false;
+			}
+			if(company_call == "" || company_call.length == 0){
+				alert("중개인 연락처를 입력해주세요.");
+				return false;
+			}
 			
 			var vo = {
 					no:no, bno:bno, bname:bname, rno:rno, state:state, room_type:room_type, pay_type:pay_type, tenant:"", phone:"", check_in:check_in, check_out:check_out, deposit:deposit, memo:memo,
@@ -1021,6 +1135,35 @@ $(function(){
 			var check_out = $(".popup_roomUpdateComplete > table tr > td > input[name='check_out']").val();
 			var deposit = $(".popup_roomUpdateComplete > table tr > td > input[name='deposit']").val();
 			var monthly_rent = $(".popup_roomUpdateComplete > table tr > td > input[name='monthly_rent']").val();
+			
+			if(rno == "" || rno.length == 0){
+				alert("호실을 입력해주세요.");
+				return false;
+			}
+			if(tenant == "" || tenant.length == 0){
+				alert("이름을 입력해주세요.");
+				return false;
+			}
+			if(phone == "" || phone.length == 0){
+				alert("연락처를 입력해주세요.");
+				return false;
+			}
+			if(check_in == "" || check_in.length == 0){
+				alert("입주일을 입력해주세요.");
+				return false;
+			}
+			if(check_out == "" || check_out.length == 0){
+				alert("퇴실일을 입력해주세요.");
+				return false;
+			}
+			if(deposit == "" || deposit.length == 0){
+				alert("보증금을 입력해주세요.");
+				return false;
+			}
+			if(monthly_rent == "" || monthly_rent.length == 0){
+				alert("월세를 입력해주세요.");
+				return false;
+			}
 			
 			var vo = {
 					no:no, bno:bno, bname:bname, rno:rno, state:state, room_type:room_type, pay_type:pay_type, tenant:tenant, phone:phone, check_in:check_in, check_out:check_out, deposit:deposit, memo:"",
