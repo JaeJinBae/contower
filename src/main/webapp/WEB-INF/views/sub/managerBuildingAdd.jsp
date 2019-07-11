@@ -424,22 +424,67 @@
 	
 </style>
 <script>
+function inputBirthChk(obj) {
+	var number = obj.value.replace(/[^0-9]/g, "");
+	var birth = "";
+	
+	if(number.length < 5) {
+		return number;
+	} else if(number.length < 7) {
+		birth += number.substr(0, 4);
+		birth += "-";
+		birth += number.substr(4);
+	}else {
+		birth += number.substr(0, 4);
+		birth += "-";
+		birth += number.substr(4, 2);
+		birth += "-";
+		birth += number.substr(6);
+	}
+	
+	obj.value = birth;
+}
+
+function inputPhoneNumber(obj) {
+	var number = obj.value.replace(/[^0-9]/g, "");
+	var phone = "";
+	
+	if(number.length < 4) {
+		return number;
+	} else if(number.length < 7) {
+		phone += number.substr(0, 3);
+		phone += "-";
+		phone += number.substr(3);
+	} else if(number.length < 11) {
+		phone += number.substr(0, 3);
+		phone += "-";
+		phone += number.substr(3, 3);
+		phone += "-";
+		phone += number.substr(6);
+	} else {
+		phone += number.substr(0, 3);
+		phone += "-";
+		phone += number.substr(3, 4);
+		phone += "-";
+		phone += number.substr(7);
+	}
+	obj.value = phone;
+}
+
 function add_roomInfo_tbl_tr(){
 	var str = "";
 	str = "<tr class='roomInfoTr'><td><select name='state'><option value='공실'>공실</option><option value='입주완료'>입주완료</option><option value='계약완료'>계약완료</option></select></td>"
 		+ "<td><select name='room_type'><option value='one'>원룸</option><option value='mitwo'>미니투룸</option><option value='two'>투룸</option><option value='three'>쓰리룸</option>"
 		+ "<option value='store'>상가</option><option value='owner'>주인세대</option></select></td>"
 		+ "<td><select name='pay_type'><option value='월세'>월세</option>	<option value='전세'>전세</option>	</select></td>"
-		+ "<td><input type='text' name='rno' placeholder='101' class='numberOnly'></td><td><input type='text' name='tenant'></td><td><input type='text' name='phone' placeholder='010-1234-1234'></td>"
-		+ "<td><input type='date' name='check_in' placeholder='2019-05-05'></td><td><input type='date' name='check_out' placeholder='2019-05-05'></td>"
+		+ "<td><input type='text' name='rno' placeholder='101' class='numberOnly'></td><td><input type='text' name='tenant'></td><td><input type='text' name='phone' placeholder='010-1234-1234' onKeyup='inputPhoneNumber(this);' maxlength='13'></td>"
+		+ "<td><input type='date' name='check_in' placeholder='2019-05-05' onKeyup='inputBirthChk(this);' maxlength='10'></td><td><input type='date' name='check_out' placeholder='2019-05-05' onKeyup='inputBirthChk(this);' maxlength='10'></td>"
 		+ "<td><input type='text' name='deposit' placeholder='500' class='numberOnly'></td>	<td><input type='text' name='monthly_rent' placeholder='35' class='numberOnly'></td>"
 		+ "<td><input type='text' name='rpw'></td><td><input type='text' name='hope_price' placeholder='300/30'></td>"
 		+ "<td><select name='selling_type'><option value='월세'>월세</option><option value='전세'>전세</option><option value='월세, 전세'>월세, 전세</option></select></td>"
-		+ "<td><input type='text' name='company'></td><td><input type='text' name='company_call'></td><td><input type='text' name='downpayment'></td>"
+		+ "<td><input type='text' name='company'></td><td><input type='text' name='company_call' placeholder='010-1234-1234' onKeyup='inputPhoneNumber(this);' maxlength='13'></td><td><input type='text' name='downpayment'></td>"
 		+ "<td><textarea name='repair'></textarea></td></tr>";
-	
-		
-		
+
 	$(".roomInfo > table").append(str);
 }
 
@@ -945,11 +990,11 @@ $(function(){
 					</tr>
 					<tr>
 						<th>연락처</th>
-						<td><input type="text" name="phone" placeholder="010-1234-1234"></td>
+						<td><input type="text" name="phone" placeholder="010-1234-1234" onKeyup="inputPhoneNumber(this);" maxlength="13"></td>
 					</tr>
 					<tr>
 						<th>생년월일</th>
-						<td><input type="text" name="birth" placeholder="1999-09-09"></td>
+						<td><input type="text" name="birth" placeholder="1999-09-09" onKeyup='inputBirthChk(this);' maxlength='10'></td>
 					</tr>
 					<tr>
 						<th>이메일</th>
@@ -1027,9 +1072,9 @@ $(function(){
 									<th>건축주</th>
 									<td><input type="text" name="oname"><input type="hidden" name="ono"></td> 
 									<th>연락처</th>
-									<td><input type="text" name="ophone"></td>
+									<td><input type="text" name="ophone" onKeyup="inputPhoneNumber(this);" maxlength="13"></td>
 									<th>생년월일</th>
-									<td><input type="text" name="obirth"></td>
+									<td><input type="text" name="obirth" onKeyup='inputBirthChk(this);' maxlength='10'></td>
 									<th>건축주계정</th>
 									<td><input type="hidden" name="ownerChkVal" value="x"><button id="ownerChk">계정확인&생성</button></td>
 								</tr>
@@ -1090,9 +1135,9 @@ $(function(){
 									</td>
 									<td><input type="text" name="rno" placeholder="101" class="numberOnly"></td>
 									<td><input type="text" name="tenant"></td>
-									<td><input type="text" name="phone" placeholder="010-1234-1234"></td>
-									<td><input type="date" name="check_in" placeholder="2019-05-05"></td>
-									<td><input type="date" name="check_out" placeholder="2019-05-05"></td>
+									<td><input type="text" name="phone" placeholder="010-1234-1234" onKeyup="inputPhoneNumber(this);" maxlength="13"></td>
+									<td><input type="date" name="check_in" placeholder="2019-05-05" onKeyup='inputBirthChk(this);' maxlength='10'></td>
+									<td><input type="date" name="check_out" placeholder="2019-05-05" onKeyup='inputBirthChk(this);' maxlength='10'></td>
 									<td><input type="text" name="deposit" placeholder="300" class="numberOnly"></td>
 									<td><input type="text" name="monthly_rent" placeholder="30" class="numberOnly"></td>
 									<td><input type="text" name="rpw" value=""></td>
@@ -1105,7 +1150,7 @@ $(function(){
 										</select>
 									</td>
 									<td><input type="text" name="company"></td>
-									<td><input type="text" name="company_call"></td>
+									<td><input type="text" name="company_call" placeholder='010-1234-1234' onKeyup='inputPhoneNumber(this);' maxlength='13'></td>
 									<td><input type="text" name="downpayment"></td>
 									<td><textarea name="repair"></textarea></td>
 								</tr>
