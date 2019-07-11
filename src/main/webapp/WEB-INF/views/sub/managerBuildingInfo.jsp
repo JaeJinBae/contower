@@ -440,6 +440,7 @@ function post_roomUpdate(vo){
 				
 				$(".popupWrap > .popup_roomUpdate").css("display","none");
 				$(".popupWrap").css("display","none");
+				location.reload();
 			}
 		},
 		error:function(request,status,error){
@@ -615,7 +616,7 @@ function draw_roomContractComplete(bno, state, orderType){
 			+ "<td>"+this.downpayment+"만원</td>"
 			+ "<td>"+this.deposit+"만원</td>"
 			+ "<td>"+this.monthly_rent+"만원</td>"
-			+ "<td><div class='repairSimple'>"+this.repair+"</div><div class='repairDetail'><h3><span></span> 수리내역</h3><div class='repairDetailContent'><textarea disabled>"+this.repair+"</textarea></div></div></td></tr>";
+			+ "<td><div class='repairSimple'>"+this.memo+"</div><div class='repairDetail'><h3><span></span> 수리요청</h3><div class='repairDetailContent'><textarea disabled>"+this.memo+"</textarea></div></div></td></tr>";
 	});
 	
 	$("#contractComplete > table").append(txt);
@@ -828,7 +829,7 @@ $(function(){
 			
 			var vo = {
 					no:0, bno:bno, bname:bname, rno:rno, state:state, room_type:room_type, pay_type:pay_type, tenant:tenant, phone:phone, check_in:check_in, check_out:check_out, deposit:deposit, 
-					monthly_rent:monthly_rent, hope_price:hope_price, selling_type:selling_type, repair:repair, rpw:rpw, company:company, company_call:company_call, downpayment:downpayment
+					monthly_rent:monthly_rent, hope_price:hope_price, selling_type:selling_type, repair:repair, rpw:rpw, company:company, company_call:company_call, downpayment:downpayment, memo:""
 			}
 			
 			post_roomRegister(vo);
@@ -871,7 +872,7 @@ $(function(){
 			$(".popupWrap > .popup_roomUpdateEmpty").css("display", "block");
 		}else if(state == "입주완료"){
 			$(".popup_roomUpdateComplete > h2 > input[name='no']").val(no);
-			$(".popup_roomUpdateComplete > table tr > td > select[name='state'] > option[value='"+info.state+"']").prop("selected", true);
+			$(".popup_roomUpdateComplete > table tr > td > select[name='state'] > option[value='"+state+"']").prop("selected", true);
 			$(".popup_roomUpdateComplete > table tr > td > select[name='room_type'] > option[value='"+info.room_type+"']").prop("selected", true);
 			$(".popup_roomUpdateComplete > table tr > td > select[name='pay_type'] > option[value='"+info.pay_type+"']").prop("selected", true);
 			$(".popup_roomUpdateComplete > table tr > td > input[name='rno']").val(info.rno);
@@ -890,7 +891,7 @@ $(function(){
 			$(".popupWrap > .popup_roomUpdateComplete").css("display", "block");
 		}else if(state == "계약완료"){
 			$(".popup_roomUpdateContractComp > h2 > input[name='no']").val(no);
-			$(".popup_roomUpdateContractComp > table tr > td > select[name='state'] > option[value='"+info.state+"']").prop("selected", true);
+			$(".popup_roomUpdateContractComp > table tr > td > select[name='state'] > option[value='"+state+"']").prop("selected", true);
 			$(".popup_roomUpdateContractComp > table tr > td > select[name='room_type'] > option[value='"+info.room_type+"']").prop("selected", true);
 			$(".popup_roomUpdateContractComp > table tr > td > select[name='pay_type'] > option[value='"+info.pay_type+"']").prop("selected", true);
 			$(".popup_roomUpdateContractComp > table tr > td > input[name='rno']").val(info.rno);
@@ -928,7 +929,7 @@ $(function(){
 			 
 			var vo = {
 					no:no, bno:bno, bname:bname, rno:rno, state:state, room_type:room_type, pay_type:info.pay_type, tenant:"", phone:"", check_in:"", check_out:"", deposit:"0", 
-					monthly_rent:"0", hope_price:hope_price, selling_type:selling_type, repair:"", rpw:rpw, company:"", company_call:"", downpayment:"0", prevState:info.state
+					monthly_rent:"0", hope_price:hope_price, selling_type:selling_type, repair:"", rpw:rpw, company:"", company_call:"", downpayment:"0", memo:"", prevState:info.state
 			}
 			post_roomUpdate(vo);
 		}else{
@@ -943,6 +944,86 @@ $(function(){
 			}
 		}
 	});
+	
+	//계약완료수정 팝업에서 버튼클릭
+	$(".popup_roomUpdateContractComp > .popup_roomUpdate_btn_wrap > p").click(function(){
+		var idx = $(this).index();
+		var no = $(".popup_roomUpdateContractComp > h2 > input[name='no']").val();
+		if(idx == 0){
+			var info = get_roomInfo(no);
+			
+			var bno = $(".tblTop > table tr > td > input[name='bno']").val();
+			var bname = $(".tblTop > table tr:first-child > td").eq(0).text(); 
+			var state = $(".popup_roomUpdateContractComp > table tr > td > select[name='state']").val();
+			var room_type = $(".popup_roomUpdateContractComp > table tr > td > select[name='room_type']").val();
+			var rno = $(".popup_roomUpdateContractComp > table tr > td > input[name='rno']").val();
+			var pay_type = $(".popup_roomUpdateContractComp > table tr > td > select[name='pay_type']").val();
+			var check_in = $(".popup_roomUpdateContractComp > table tr > td > input[name='check_in']").val();
+			var check_out = $(".popup_roomUpdateContractComp > table tr > td > input[name='check_out']").val();
+			var deposit = $(".popup_roomUpdateContractComp > table tr > td > input[name='deposit']").val();
+			var monthly_rent = $(".popup_roomUpdateContractComp > table tr > td > input[name='monthly_rent']").val();
+			var downpayment = $(".popup_roomUpdateContractComp > table tr > td > input[name='downpayment']").val();
+			var company = $(".popup_roomUpdateContractComp > table tr > td > input[name='company']").val();
+			var company_call = $(".popup_roomUpdateContractComp > table tr > td > input[name='company_call']").val();
+			var memo = $(".popup_roomUpdateContractComp > table tr > td > textarea[name='memo']").val();
+			
+			var vo = {
+					no:no, bno:bno, bname:bname, rno:rno, state:state, room_type:room_type, pay_type:pay_type, tenant:"", phone:"", check_in:check_in, check_out:check_out, deposit:deposit, memo:memo,
+					monthly_rent:monthly_rent, hope_price:info.hope_price, selling_type:info.selling_type, repair:info.repair, rpw:info.rpw, company:company, company_call:company_call, downpayment:downpayment, prevState:info.state
+			}
+			post_roomUpdate(vo);
+		}else{
+			var reply = confirm("삭제 후 해당 정보를 되돌릴 수 없습니다.\n삭제하시겠습니까?");
+			if(reply == true){
+				var bno = $(".tblTop > table tr > td > input[name='bno']").val();
+				var rno = $(".popup_roomUpdateEmpty > table tr > td > input[name='rno']").val();
+				
+				var info={no:no, bno:bno, rno:rno};
+				
+				post_roomDelete(info);
+			}
+		}
+	});
+	
+	//입주완료수정 팝업에서 버튼클릭
+	$(".popup_roomUpdateComplete > .popup_roomUpdate_btn_wrap > p").click(function(){
+		var idx = $(this).index();
+		var no = $(".popup_roomUpdateComplete > h2 > input[name='no']").val();
+		if(idx == 0){
+			var info = get_roomInfo(no);
+			
+			var bno = $(".tblTop > table tr > td > input[name='bno']").val();
+			var bname = $(".tblTop > table tr:first-child > td").eq(0).text(); 
+			var state = $(".popup_roomUpdateComplete > table tr > td > select[name='state']").val();
+			var rno = $(".popup_roomUpdateComplete > table tr > td > input[name='rno']").val();
+			var room_type = $(".popup_roomUpdateComplete > table tr > td > select[name='room_type']").val();
+			var pay_type = $(".popup_roomUpdateComplete > table tr > td > select[name='pay_type']").val();
+			var tenant = $(".popup_roomUpdateComplete > table tr > td > input[name='tenant']").val();
+			var phone = $(".popup_roomUpdateComplete > table tr > td > input[name='phone']").val();
+			var check_in = $(".popup_roomUpdateComplete > table tr > td > input[name='check_in']").val();
+			var check_out = $(".popup_roomUpdateComplete > table tr > td > input[name='check_out']").val();
+			var deposit = $(".popup_roomUpdateComplete > table tr > td > input[name='deposit']").val();
+			var monthly_rent = $(".popup_roomUpdateComplete > table tr > td > input[name='monthly_rent']").val();
+			
+			var vo = {
+					no:no, bno:bno, bname:bname, rno:rno, state:state, room_type:room_type, pay_type:pay_type, tenant:tenant, phone:phone, check_in:check_in, check_out:check_out, deposit:deposit, memo:"",
+					monthly_rent:monthly_rent, hope_price:info.hope_price, selling_type:info.selling_type, repair:info.repair, rpw:info.rpw, company:"", company_call:"", downpayment:"0", prevState:info.state
+			}
+			post_roomUpdate(vo);
+		}else{
+			var reply = confirm("삭제 후 해당 정보를 되돌릴 수 없습니다.\n삭제하시겠습니까?");
+			if(reply == true){
+				var bno = $(".tblTop > table tr > td > input[name='bno']").val();
+				var rno = $(".popup_roomUpdateEmpty > table tr > td > input[name='rno']").val();
+				
+				var info={no:no, bno:bno, rno:rno};
+				
+				post_roomDelete(info);
+			}
+		}
+	});
+	
+	
 	
 });
 </script>

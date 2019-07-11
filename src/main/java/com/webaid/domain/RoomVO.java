@@ -20,6 +20,7 @@ public class RoomVO implements Comparable<RoomVO> {
 	private String company;
 	private String company_call;
 	private int downpayment;
+	private String memo;
 
 	public RoomVO() {
 		super();
@@ -177,13 +178,22 @@ public class RoomVO implements Comparable<RoomVO> {
 		this.downpayment = downpayment;
 	}
 
+	public String getMemo() {
+		return memo;
+	}
+
+	public void setMemo(String memo) {
+		this.memo = memo;
+	}
+
 	@Override
 	public String toString() {
 		return "RoomVO [no=" + no + ", bno=" + bno + ", bname=" + bname + ", rno=" + rno + ", state=" + state
 				+ ", room_type=" + room_type + ", pay_type=" + pay_type + ", tenant=" + tenant + ", phone=" + phone
 				+ ", check_in=" + check_in + ", check_out=" + check_out + ", deposit=" + deposit + ", monthly_rent="
 				+ monthly_rent + ", hope_price=" + hope_price + ", selling_type=" + selling_type + ", repair=" + repair
-				+ ", company=" + company + ", company_call=" + company_call + ", downpayment=" + downpayment + "]";
+				+ ", company=" + company + ", company_call=" + company_call + ", downpayment=" + downpayment + ", memo="
+				+ memo + "]";
 	}
 
 	@Override

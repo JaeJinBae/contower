@@ -170,7 +170,7 @@
 	padding-bottom: 1px;
 }
 .popup_roomUpdateComplete > table{
-	width: 740px;
+	width: 780px;
 	margin: 20px auto;
 }
 .popup_roomUpdateComplete > table tr{
@@ -346,6 +346,13 @@
 	width: 105px;
 	margin-right: 8px;
 	text-align: right;
+}
+.popup_roomUpdateContractComp > table tr > td > textarea[name='memo']{
+	width: 100%;
+	height: 45px;
+	font-size: 14px;
+	padding: 2px 6px;
+	resize: none;
 }
 .popup_roomUpdateContractComp{
 	display:none;
@@ -808,7 +815,9 @@ $(function(){
 				<th>중개인</th>
 				<td><input type="text" name="company"></td>
 				<th>중개인<br>연락처</th>
-				<td><input type="text" name="company_call"></td>
+				<td><input type="text" name="company_call" onKeyup="inputPhoneNumber(this);" maxlength="13"></td>
+				<th>요청사항</th>
+				<td><textarea name="memo"></textarea></td>
 			</tr>
 		</table>
 		<div class="popup_roomUpdate_btn_wrap">

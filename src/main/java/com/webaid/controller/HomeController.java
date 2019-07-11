@@ -954,6 +954,7 @@ public class HomeController {
 			vo.setCompany(info.get("company"));
 			vo.setCompany_call(info.get("company_call"));
 			vo.setDownpayment(Integer.parseInt(info.get("downpayment")));
+			vo.setMemo(info.get("memo"));
 			rService.update(vo);
 			
 			if(!prevVO.getRoom_type().equals(info.get("room_type"))){
