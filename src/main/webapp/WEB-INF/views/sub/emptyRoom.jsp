@@ -138,7 +138,7 @@
 		vertical-align: middle;
 	}
 	.searchWrap > button{
-		background: #105340;
+		background: #4d96a8;
 		font-size: 15px;
 		color: #fefefe;
 		padding: 5px 10px;
