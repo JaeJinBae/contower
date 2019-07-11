@@ -265,6 +265,17 @@
 		width: 49%;
 		margin-left: 18px;
 	}
+	.buiInfo > table tr > td > input[name='site']{
+		width: 78%;
+		text-align: right;
+	}
+	.buiInfo > table tr > td > input[name='gross_area']{
+		width: 78%;
+		text-align: right;
+	}
+	.imgM2{
+		vertical-align: middle;
+	}
 	.buiInfo > table tr > td > #ownerChk{
 		width: 100%;
 		font-size: 14px;
@@ -556,6 +567,9 @@ function post_roomInfo(bno){
 		}
 		if(downpayment==""){
 			downpayment = 0;
+		}
+		if(repair.length == 0){
+			repair = "";
 		}
 
 		rObj={no:0, bno:bno, bname:bname, rno:rno, state:state, room_type:room_type, pay_type:pay_type, tenant:tenant, phone:phone, check_in:check_in, check_out:check_out, deposit:deposit, monthly_rent:monthly_rent, rpw:rpw, hope_price:hope_price, selling_type:selling_type, company:company, company_call:company_call, downpayment:downpayment, repair:repair};
@@ -942,6 +956,7 @@ $(function(){
 	
 	$(".popup_ownerRegister > h3 > img").click(function(){
 		$(".popup_ownerRegister > table tr > td > input").val("");
+		$(".popup_ownerRegister").css("display", "none");
 		$(".popupWrap").css("display", "none");
 	});
 	
@@ -967,7 +982,7 @@ $(function(){
 	$(document).on("click", ".popup_repair > .popup_btnWrap > p > img", function(){
 		var idx = $(".popup_repair > h3 > input[name='trIdx']").val()-1;
 		var content = $(".popup_repair > table tr > td > textarea").val();
-		console.log(content);
+		
 		$(".roomInfoTr").eq(idx).find("td:last-child > textarea[name='repair']").val(content);
 		$(".popup_repair > h3 > input[name='trIdx']").val("");
 		$(".popup_repair > table tr > td > textarea").val("");
@@ -1062,9 +1077,9 @@ $(function(){
 									<th>준공일</th>
 									<td><input type="text" name="completion_date"></td>
 									<th>대지</th>
-									<td><input type="text" name="site" class="numberOnly"></td>
+									<td><input type="text" name="site" class="numberOnly"><img class="imgM2" src="${pageContext.request.contextPath}/resources/images/m2.png"></td>
 									<th>연면적</th>
-									<td><input type="text" name="gross_area" class="numberOnly"></td>
+									<td><input type="text" name="gross_area" class="numberOnly"><img class="imgM2" src="${pageContext.request.contextPath}/resources/images/m2.png"></td>
 									<th>도로</th>
 									<td><input type="text" name="road"></td>
 								</tr>

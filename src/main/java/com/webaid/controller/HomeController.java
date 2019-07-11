@@ -589,7 +589,7 @@ public class HomeController {
 				vo.setMonthly_rent(Integer.parseInt(list.get(i).get("monthly_rent")));
 				vo.setHope_price(list.get(i).get("hope_price"));
 				vo.setSelling_type(list.get(i).get("selling_type"));
-				vo.setRepair(list.get(i).get("reapair"));
+				vo.setRepair(list.get(i).get("repair"));
 				vo.setCompany(list.get(i).get("company"));
 				vo.setCompany_call(list.get(i).get("company_call"));
 				vo.setDownpayment(Integer.parseInt(list.get(i).get("downpayment")));
