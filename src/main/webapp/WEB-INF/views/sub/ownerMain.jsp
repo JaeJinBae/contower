@@ -443,7 +443,7 @@ function draw_table_managementBuilding(ono){
 			}else{
 				addr = this.baddr_old;
 			}
-			str += "<tr class='mbListTr'><td>"+cntNum+"<input type='hidden' name='bno' value='"+this.bno+"'></td><td><a href='${pageContext.request.contextPath}/mBuiInfo/"+this.bno+"'>"+this.bname+"</a></td>"
+			str += "<tr class='mbListTr'><td>"+cntNum+"<input type='hidden' name='bno' value='"+this.bno+"'></td><td><a href='${pageContext.request.contextPath}/owner/oBuiInfo/"+this.bno+"'>"+this.bname+"</a></td>"
 				+"<td>"+this.oname+"</td><td>"+this.ophone+"</td><td>"+addr+"</td>"
 				+"<td>"+this.cnt_complete+"</td><td>"+this.cnt_empty+"</td><td>"+this.total_monthly_rent+"</td><td>"+this.total_deposit+"</td>";
 				cntNum++;
@@ -482,7 +482,7 @@ function draw_table_roomMonthSchedule(date){
 			str += "<tr class='noticeContentTr'><td><p>일정이 없습니다.</p></td></tr>";
 		}else{
 			$(list.chkInList).each(function(){
-				str += "<tr class='noticeContentTr'><td><span class='fc_green'>입주</span> "+this.check_in+" "+"<a href='${pageContext.request.contextPath}/mBuiInfo/"+this.bno+"'> "+this.bname+"</a> "+this.rno+"호</td></tr>";
+				str += "<tr class='noticeContentTr'><td><span class='fc_green'>입주</span> "+this.check_in+" "+"<a href='${pageContext.request.contextPath}/owner/oBuiInfo/"+this.bno+"'> "+this.bname+"</a> "+this.rno+"호</td></tr>";
 				//달력표시
 				cTag = $(".c_"+this.check_in+" > .calNoticeWrap");
 				if(cTag.find(".icon_in_house").length <= 0){
@@ -500,7 +500,7 @@ function draw_table_roomMonthSchedule(date){
 			str += "<tr class='noticeContentTr'><td><p>일정이 없습니다.</p></td></tr>";
 		}else{
 			$(list.chkOutList).each(function(){
-				str += "<tr class='noticeContentTr'><td><span class='fc_red'>퇴실</span>  "+this.check_out+"<a href='${pageContext.request.contextPath}/mBuiInfo/"+this.bno+"'> "+this.bname+"</a> "+this.rno+"호</td></tr>";
+				str += "<tr class='noticeContentTr'><td><span class='fc_red'>퇴실</span>  "+this.check_out+"<a href='${pageContext.request.contextPath}/owner/oBuiInfo/"+this.bno+"'> "+this.bname+"</a> "+this.rno+"호</td></tr>";
 				//달력표시
 				cTag = $(".c_"+this.check_out+" > .calNoticeWrap");
 				if(cTag.find(".icon_out_house").length <= 0){
@@ -659,7 +659,7 @@ $(function(){
 								<th>건물명</th>
 								<th>건물주</th>
 								<th>연락처</th>
-								<th>주소</th>
+								<th>주소</th> 
 								<th>입주완료</th>
 								<th>공실</th>
 								<th>월세 합계</th>

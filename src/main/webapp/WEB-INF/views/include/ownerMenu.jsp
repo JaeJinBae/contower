@@ -32,7 +32,7 @@
 		font-weight: bold;
 		font-family: sans-serif;
 	}
-	.menuWrap > ul > li:nth-child(2):hover > .headerSubMenu{
+	.menuWrap > ul > li:nth-child(1):hover > .headerSubMenu{
 		display: block;
 	}
 	.headerSubMenu{
@@ -96,13 +96,13 @@ $(function(){
 });
 </script>
 <div class="logoWrap">
-	<a href="${pageContext.request.contextPath}/mMain"><img src="${pageContext.request.contextPath}/resources/images/logotest.png"></a>
+	<a href="${pageContext.request.contextPath}/oMain"><img src="${pageContext.request.contextPath}/resources/images/logotest.png"></a>
 </div>
 <div class="menuWrap">
 	<ul>
-		<li><a href="${pageContext.request.contextPath}/mBuiReg">신규건물추가</a><img class="menuBg" src="${pageContext.request.contextPath}/resources/images/menuBg.png"></li>
+		<%-- <li><a href="${pageContext.request.contextPath}/mBuiReg">신규건물추가</a><img class="menuBg" src="${pageContext.request.contextPath}/resources/images/menuBg.png"></li> --%>
 		<li>
-			<a href="">관리건물 ▼</a>
+			<a href="">보유건물 ▼</a>
 			<img class="menuBg" src="${pageContext.request.contextPath}/resources/images/menuBg.png">
 			<div class="headerSubMenu">
 				<ul>
@@ -111,8 +111,8 @@ $(function(){
 			</div>
 			
 		</li>
-		<li><a href="${pageContext.request.contextPath}/emptyRoomInfo">공실정보</a><img class="menuBg" src="${pageContext.request.contextPath}/resources/images/menuBg.png"></li>
-		<li><a href="${pageContext.request.contextPath}/repairCompany">수리/시공</a><img class="menuBg" src="${pageContext.request.contextPath}/resources/images/menuBg.png"></li>
-		<li><a href="${pageContext.request.contextPath}/tradeInfo">건물매매</a><img class="menuBg" src="${pageContext.request.contextPath}/resources/images/menuBg.png"></li>
+		<%-- <li><a href="${pageContext.request.contextPath}/emptyRoomInfo">공실정보</a><img class="menuBg" src="${pageContext.request.contextPath}/resources/images/menuBg.png"></li>
+		<li><a href="${pageContext.request.contextPath}/repairCompany">수리/시공</a><img class="menuBg" src="${pageContext.request.contextPath}/resources/images/menuBg.png"></li> --%>
+		<li><a href="${pageContext.request.contextPath}/owner/oTradeInfo">건물매매</a><img class="menuBg" src="${pageContext.request.contextPath}/resources/images/menuBg.png"></li>
 	</ul>
 </div>
