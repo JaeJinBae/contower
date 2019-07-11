@@ -166,23 +166,30 @@
 	}
 	.searchWrap > select{
 		font-size: 15px;
+		padding: 3px;
+		vertical-align: middle;
 	}
 	.searchWrap > input{
 		font-size: 15px;
+		padding: 3px;
+		vertical-align: middle;
 	}
 	.searchWrap > button{
-		background: #105340;
+		background: #4d96a8;
 		font-size: 15px;
 		color: #fefefe;
 		padding: 5px 10px;
 		border-radius: 3px;
 		margin-left: 15px;
 	}
-	.searchWrap > #printBtn{
+	#backBtn{
+		float: right;
+	}
+	/* .searchWrap > #printBtn{
 		width: 33px;
 		float: right;
 		cursor: pointer;
-	}
+	} */
 	
 	.tblWrap{
 		width: 100%;
@@ -270,6 +277,12 @@
 		color:white;
 	}
 	
+	.footer{
+		width: 100%;
+		height: 100px;
+		background: #1797f8;
+		box-shadow: 0px 0px 20px 0px gray;
+	}
 </style>
 <script>
 function get_repairCompanyAll(info){
@@ -351,6 +364,11 @@ function draw_repairCompany(info){
 		str += "</ul>";
 		
 		$(".contentWrap > .page").html(str);
+		
+		setTimeout(function() {
+			var height = $(".rightAside").css("height");
+			$(".leftAside").css("height", height);
+			}, 50);
 	}
 }
 
@@ -668,6 +686,7 @@ $(function(){
 					</div><!-- detailIconWrap end -->
 				</div><!-- section end -->
 			</div><!-- sectionWrap end -->
+			<div class="footer"></div>
 		</div><!-- rightAside end -->
 	</div><!-- allWrap end -->
 </body>
