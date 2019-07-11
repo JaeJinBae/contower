@@ -14,5 +14,6 @@ public interface RoomService {
 	public List<RoomVO> selectByChkOut(RoomVO vo);
 	public void register(RoomVO vo);
 	public void update(RoomVO vo);
+	public void updateRepair(RoomVO vo);
 	public void delete(int no);
 }

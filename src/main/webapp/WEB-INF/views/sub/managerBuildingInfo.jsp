@@ -223,6 +223,7 @@
 		position: relative;
 		width: 200px;
 		height: 40px;
+		cursor: pointer; 
 	}
 	#emptyRoom > table .tblContentTr > td:last-child{
 		position: relative;
@@ -260,8 +261,13 @@
 		width: 100%;
 		height: 300px;
 		text-align: left;
+	}
+	.repairDetail > .repairDetailContent > textarea{
+		width: 100%;
+		height: 100%;
 		padding: 7px;
-		overflow: scroll;
+		resize: none;
+		font-size: 15px; 
 	}
 </style>
 <script>
@@ -329,6 +335,8 @@ function post_buiUpdate(vo){
 				
 				$(".popupWrap > .popup_buiUpdate").css("display","none");
 				$(".popupWrap").css("display","none");
+				
+				location.reload();
 			}
 		},
 		error:function(request,status,error){
@@ -403,7 +411,7 @@ function post_roomRegister(vo){
 		success:function(json){
 			if(json == "ok"){
 				alert("방 등록이 완료되었습니다.");
-				
+				location.reload();
 			}else{
 				alert("방 등록이 완료되지 않았습니다.\n새로고침(F5) 후 다시 시도하세요.");
 				console.log(json);
@@ -445,6 +453,36 @@ function post_roomUpdate(vo){
 				
 				$(".popupWrap > .popup_roomUpdate").css("display","none");
 				$(".popupWrap").css("display","none");
+			}
+		},
+		error:function(request,status,error){
+			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+	});
+}
+
+function post_updateRepair(info){
+	$.ajax({
+		url:"${pageContext.request.contextPath}/repairUpdate",
+		type:"post",
+		data : JSON.stringify(info),
+        dataType : 'text',
+        contentType : 'application/json; charset=UTF-8',
+		async:false,
+		success:function(json){
+			if(json == "ok"){
+				alert("수리내역이 수정되었습니다.");
+				
+				$(".popup_repair > h2 > input[name='rno']").val("");
+				$(".popup_repair > table tr > td > textarea").val("");
+				
+				$(".popupWrap > .popup_repair").css("display","none");
+				$(".popupWrap").css("display","none");
+				
+				var bno = $(".tblTop > table tr > td > input[name=bno]").val();
+				draw_roomTotal(bno, "all", "rno");
+				draw_roomEmpty(bno, "empty", "rno");
+				draw_roomContractComplete(bno, "contractComplete", "rno");
 			}
 		},
 		error:function(request,status,error){
@@ -529,6 +567,7 @@ function get_roomByBnoState(info){
 }
 
 function draw_roomTotal(bno, state, orderType){
+	$("#totalInfo > table .tblContentTr").remove();
 	var info = {bno:bno, state:state, orderType:orderType};
 	var list = get_roomByBnoState(info);
 	var txt = "";
@@ -544,7 +583,7 @@ function draw_roomTotal(bno, state, orderType){
 			+ "<td>"+this.check_out+"</td>"
 			+ "<td>"+this.deposit+"만원</td>"
 			+ "<td>"+this.monthly_rent+"만원</td>"
-			+ "<td><div class='repairSimple'>"+this.repair+"</div><div class='repairDetail'><h3><span></span> 수리내역</h3><div class='repairDetailContent'>"+this.repair+"</div></div></td></tr>";
+			+ "<td><div class='repairSimple'>"+this.repair+"</div><div class='repairDetail'><h3><span></span> 수리내역</h3><div class='repairDetailContent'><textarea disabled>"+this.repair+"</textarea></div></div></td></tr>";
 	});
 	$("#totalInfo > table").append(txt);
 	
@@ -560,19 +599,21 @@ function draw_roomTotal(bno, state, orderType){
 }
 
 function draw_roomEmpty(bno, state, orderType){
+	$("#emptyRoom > table .tblContentTr").remove();
 	var info = {bno:bno, state:state, orderType:orderType};
 	var list = get_roomByBnoState(info);
 	var txt = "";
 	$(list).each(function(){
 		txt += "<tr class='tblContentTr'>"
 			+ "<td>"+this.rno+"호</td>"
-			+ "<td><div class='repairSimple'>"+this.repair+"</div><div class='repairDetail'><h3><span></span> 수리내역</h3><div class='repairDetailContent'>"+this.repair+"</div></div></td></tr>";
+			+ "<td><div class='repairSimple'>"+this.repair+"</div><div class='repairDetail'><h3><span></span> 수리내역</h3><div class='repairDetailContent'><textarea disabled>"+this.repair+"</textarea></div></div></td></tr>";
 	});
 	$("#emptyRoom > table").append(txt);
 	
 }
 
 function draw_roomContractComplete(bno, state, orderType){
+	$("#contractComplete > table .tblContentTr").remove();
 	var info = {bno:bno, state:state, orderType:orderType};
 	var list = get_roomByBnoState(info);
 	var txt = "";
@@ -587,7 +628,7 @@ function draw_roomContractComplete(bno, state, orderType){
 			+ "<td>"+this.downpayment+"만원</td>"
 			+ "<td>"+this.deposit+"만원</td>"
 			+ "<td>"+this.monthly_rent+"만원</td>"
-			+ "<td><div class='repairSimple'>"+this.repair+"</div><div class='repairDetail'><h3><span></span> 수리내역</h3><div class='repairDetailContent'>"+this.repair+"</div></div></td></tr>";
+			+ "<td><div class='repairSimple'>"+this.repair+"</div><div class='repairDetail'><h3><span></span> 수리내역</h3><div class='repairDetailContent'><textarea disabled>"+this.repair+"</textarea></div></div></td></tr>";
 	});
 	
 	$("#contractComplete > table").append(txt);
@@ -737,10 +778,22 @@ $(function(){
 	//종합현황 수리내역 클릭
 	$(document).on("click", "#totalInfo > table .tblContentTr > td:last-child", function(){
 		var repairContent = $(this).find(".repairSimple").text();
+		var rno = $(this).parent().find("td").eq(1).text().split("호")[0];
+		
+		$(".popup_repair > h2 > input[name='rno']").val(rno);
 		$(".popup_repair > table tr > td > textarea").val(repairContent);
 		$(".popup_repair").css("display","block");
 		$(".popupWrap").css("display", "block");
 	});
+	
+	//종합현황 수리내역 팝업 +클릭
+	$(document).on("click", ".popup_repair > .popup_btnWrap > p", function(){
+		var repairContent = $(".popup_repair > table tr > td > textarea").val();
+		var bno = $(".tblTop > table tr > td > input[name=bno]").val();
+		var rno = $(".popup_repair > h2 > input[name='rno']").val();
+		var info = {bno:bno, rno:rno, repair:repairContent};
+		post_updateRepair(info);
+	})
 	
 	//방 추가 클릭
 	$("#addRoomBtn").click(function(){
@@ -768,14 +821,28 @@ $(function(){
 			var rpw = $(".popup_roomRegister > table tr > td > input[name='rpw']").val();
 			var hope_price = $(".popup_roomRegister > table tr > td > input[name='hope_price']").val();
 			var selling_type = $(".popup_roomRegister > table tr > td > select[name='selling_type']").val();
-			var repair = $(".popup_roomRegister > table tr > td > input[name='repair']").val();
+			var repair = $(".popup_roomRegister > table tr > td > textarea[name='repair']").val();
+			var company = $(".popup_roomRegister > table tr > td > input[name='company']").val();
+			var company_call = $(".popup_roomRegister > table tr > td > input[name='company_call']").val();
+			var downpayment = $(".popup_roomRegister > table tr > td > input[name='downpayment']").val();
+			
+			if(deposit == ""){
+				deposit = 0;
+			}
+			if(monthly_rent == ""){
+				monthly_rent = 0;
+			}
+			if(downpayment == ""){
+				downpayment = 0;
+			}
+			if(repair.length == 0){
+				repair = ""
+			}
 			
 			var vo = {
-					no:0, bno:bno, bname:bname, rno:rno, state:state, room_type:room_type, pay_type:pay_type, tenant:tenant, phone:phone, check_in:check_in, check_out:check_out,
-					deposit:deposit, monthly_rent:monthly_rent, hope_price:hope_price, selling_type:selling_type, repair:repair, rpw:rpw
+					no:0, bno:bno, bname:bname, rno:rno, state:state, room_type:room_type, pay_type:pay_type, tenant:tenant, phone:phone, check_in:check_in, check_out:check_out, deposit:deposit, 
+					monthly_rent:monthly_rent, hope_price:hope_price, selling_type:selling_type, repair:repair, rpw:rpw, company:company, company_call:company_call, downpayment:downpayment
 			}
-
-			console.log(vo);
 			
 			post_roomRegister(vo);
 		}else if(btnIdx == 1){

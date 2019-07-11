@@ -60,6 +60,11 @@ public class RoomServiceImpl implements RoomService {
 	}
 
 	@Override
+	public void updateRepair(RoomVO vo) {
+		dao.updateRepair(vo);
+	}
+
+	@Override
 	public void delete(int no) {
 		dao.delete(no);
 	}

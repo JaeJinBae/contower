@@ -44,6 +44,10 @@
 		update room set rno=#{rno}, state=#{state}, room_type=#{room_type}, pay_type=#{pay_type}, tenant=#{tenant}, phone=#{phone}, check_in=#{check_in}, check_out=#{check_out}, deposit=#{deposit}, monthly_rent=#{monthly_rent}, hope_price=#{hope_price}, selling_type=#{selling_type}, repair=#{repair}, company=#{company}, company_call=#{company_call}, downpayment=#{downpayment} where no=#{no}
 	</update>
 	
+	<update id="updateRepair">
+		update room set repair=#{repair} where bno=#{bno} and rno=#{rno}
+	</update>
+	
 	<delete id="delete">
 		delete from room where no=#{no}
 	</delete>

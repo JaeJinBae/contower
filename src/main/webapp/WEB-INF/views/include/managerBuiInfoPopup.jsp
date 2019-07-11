@@ -453,12 +453,59 @@
 
 </style>
 <script>
-	$(function(){
-		$(document).on("keyup", ".numberOnly", function(){
-			$(this).val($(this).val().replace(/[^0-9]/g,""));
-			
-		});
+function inputBirthChk(obj) {
+	var number = obj.value.replace(/[^0-9]/g, "");
+	var birth = "";
+	
+	if(number.length < 5) {
+		return number;
+	} else if(number.length < 7) {
+		birth += number.substr(0, 4);
+		birth += "-";
+		birth += number.substr(4);
+	}else {
+		birth += number.substr(0, 4);
+		birth += "-";
+		birth += number.substr(4, 2);
+		birth += "-";
+		birth += number.substr(6);
+	}
+	
+	obj.value = birth;
+}
+
+function inputPhoneNumber(obj) {
+	var number = obj.value.replace(/[^0-9]/g, "");
+	var phone = "";
+	
+	if(number.length < 4) {
+		return number;
+	} else if(number.length < 7) {
+		phone += number.substr(0, 3);
+		phone += "-";
+		phone += number.substr(3);
+	} else if(number.length < 11) {
+		phone += number.substr(0, 3);
+		phone += "-";
+		phone += number.substr(3, 3);
+		phone += "-";
+		phone += number.substr(6);
+	} else {
+		phone += number.substr(0, 3);
+		phone += "-";
+		phone += number.substr(3, 4);
+		phone += "-";
+		phone += number.substr(7);
+	}
+	obj.value = phone;
+}
+
+$(function(){
+	$(document).on("keyup", ".numberOnly", function(){
+		$(this).val($(this).val().replace(/[^0-9]/g,""));
+		
 	});
+});
 </script>
 	<div class="popup_bg">
 	</div>
@@ -493,7 +540,7 @@
 				<th>건축주</th>
 				<td><input type="text" name="oname"><input type="hidden" name="ono"></td> 
 				<th>연락처</th>
-				<td><input type="text" name="ophone"></td>
+				<td><input type="text" name="ophone" onKeyup="inputPhoneNumber(this);" maxlength="13"></td>
 				<th>생년월일</th>
 				<td><input type="text" name="obirth"></td>
 				<th>건축주계정</th>
@@ -511,7 +558,7 @@
 	</div><!-- popup_buiUpdate end -->
 	
 	<div class="popup_repair popup_content">
-		<h2>수리내역<input type="hidden" name="trIdx" value=""><img src="${pageContext.request.contextPath}/resources/images/icon_x.png" title="닫기"></h2>
+		<h2>수리내역<input type="hidden" name="rno" value=""><img src="${pageContext.request.contextPath}/resources/images/icon_x.png" title="닫기"></h2>
 		<table>
 			<tr>
 				<th>내용</th>
@@ -560,13 +607,13 @@
 				<th>이름</th>
 				<td><input type="text" name="tenant" value=""></td>
 				<th>연락처</th>
-				<td><input type="text" name="phone" placeholder="010-1234-1234" value=""></td>
+				<td><input type="text" name="phone" placeholder="010-1234-1234" value="" onKeyup="inputPhoneNumber(this);" maxlength="13"></td>
 			</tr>
 			<tr>
 				<th>입주일</th>
-				<td><input type="date" name="check_in" placeholder="2019-05-05" value=""></td>
+				<td><input type="date" name="check_in" placeholder="2019-05-05" value="" onKeyup='inputBirthChk(this);' maxlength='10'></td>
 				<th>퇴실일</th>
-				<td><input type="date" name="check_out" placeholder="2019-05-05" value=""></td>
+				<td><input type="date" name="check_out" placeholder="2019-05-05" value="" onKeyup='inputBirthChk(this);' maxlength='10'></td>
 				<th>보증금</th>
 				<td><input type="text" name="deposit" placeholder="500" class="numberOnly">만원</td>
 			</tr>
@@ -580,7 +627,7 @@
 			</tr>
 			<tr>
 				<th>계약금</th>
-				<td><input type="text" name="downpayment" placeholder="10">만원</td>
+				<td><input type="text" name="downpayment" placeholder="10" class="numberOnly">만원</td>
 				<th>중개인</th>
 				<td><input type="text" name="company"></td>
 				<th>중개인<br>연락처</th>
@@ -642,7 +689,7 @@
 				<th>이름</th>
 				<td><input type="text" name="tenant" value=""></td>
 				<th>연락처</th>
-				<td><input type="text" name="phone" placeholder="010-1234-1234" value=""></td>
+				<td><input type="text" name="phone" placeholder="010-1234-1234" value="" onKeyup="inputPhoneNumber(this);" maxlength="13"></td>
 				<th>월세</th>
 				<td><input type="text" name="monthly_rent" placeholder="30" value="0" class="numberOnly">만원</td>
 				<th>보증금</th>
@@ -650,9 +697,9 @@
 			</tr>
 			<tr>
 				<th>입주일</th>
-				<td colspan="2"><input type="date" name="check_in" placeholder="2019-05-05"></td>
+				<td colspan="2"><input type="date" name="check_in" placeholder="2019-05-05" onKeyup='inputBirthChk(this);' maxlength='10'></td>
 				<th>퇴실일</th>
-				<td colspan="2"><input type="date" name="check_out" placeholder="2019-05-05"></td>
+				<td colspan="2"><input type="date" name="check_out" placeholder="2019-05-05" onKeyup='inputBirthChk(this);' maxlength='10'></td>
 			</tr>
 		</table>
 		<div class="popup_roomUpdate_btn_wrap">
@@ -745,9 +792,9 @@
 				</td>
 				
 				<th>입주일</th>
-				<td><input type="date" name="check_in" placeholder="2019-05-05"></td>
+				<td><input type="date" name="check_in" placeholder="2019-05-05" onKeyup='inputBirthChk(this);' maxlength='10'></td>
 				<th>퇴실일</th>
-				<td><input type="date" name="check_out" placeholder="2019-05-05"></td>
+				<td><input type="date" name="check_out" placeholder="2019-05-05" onKeyup='inputBirthChk(this);' maxlength='10'></td>
 			</tr>
 			<tr>
 				<th>보증금</th>

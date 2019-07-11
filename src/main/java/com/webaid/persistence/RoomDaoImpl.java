@@ -62,6 +62,11 @@ public class RoomDaoImpl implements RoomDao {
 	}
 
 	@Override
+	public void updateRepair(RoomVO vo) {
+		session.update(namespace + ".updateRepair", vo);
+	}
+
+	@Override
 	public void delete(int no) {
 		session.delete(namespace + ".delete", no);
 	}

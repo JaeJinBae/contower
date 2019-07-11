@@ -1,5 +1,7 @@
 package com.webaid.controller;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -742,15 +744,11 @@ public class HomeController {
 		try {
 			String deposit = "";
 			String monthly_rent = "";
-			if(info.get("deposit").trim().length() == 0){
-				deposit = "0";
-			}else{
+			if(info.get("deposit") != "0"){
 				deposit = info.get("deposit");
 				total_deposit += Integer.parseInt(info.get("deposit"));
 			}
-			if(info.get("monthly_rent").trim().length() == 0){
-				monthly_rent = "0";
-			}else{
+			if(info.get("monthly_rent") != "0"){
 				monthly_rent = info.get("monthly_rent");
 				total_monthly_rent += Integer.parseInt(info.get("monthly_rent"));
 			}
@@ -1009,6 +1007,26 @@ public class HomeController {
 			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.OK);
 		}
 		
+		return entity;
+	}
+	
+	@RequestMapping(value="/repairUpdate", method=RequestMethod.POST)
+	public ResponseEntity<String> updateRepair(@RequestBody Map<String, String> info){
+		ResponseEntity<String> entity = null;
+		RoomVO vo = new RoomVO();
+		
+		try {
+			vo.setBno(Integer.parseInt(info.get("bno")));
+			vo.setRno(Integer.parseInt(info.get("rno")));
+			vo.setRepair(info.get("repair"));
+			
+			rService.updateRepair(vo);
+			
+			entity = new ResponseEntity<String>("ok", HttpStatus.OK);
+		} catch (Exception e) {
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.OK);
+		}
+
 		return entity;
 	}
 	
