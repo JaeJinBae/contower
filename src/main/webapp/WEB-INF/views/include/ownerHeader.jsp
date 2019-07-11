@@ -62,7 +62,7 @@ $(function(){
 </script>
 <div class="header">
 	<div class="loginInfo">
-		<a href="${pageContext.request.contextPath}/managerMyPage">MyPage</a>&nbsp;&nbsp;/&nbsp;&nbsp;
+		<a href="${pageContext.request.contextPath}/owner/ownerMyPage">MyPage</a>&nbsp;&nbsp;/&nbsp;&nbsp;
 		<a href="${pageContext.request.contextPath}/logout">Logout</a>
 	</div>
 	<div class="se">

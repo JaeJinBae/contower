@@ -11,86 +11,48 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/common.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/calendar.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.rwdImageMaps.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/calendar.js"></script>
 <style>
 	.allWrap{
 		width: 100%;
-		min-width: 1340px;
-		position: relative;
 	}
-	.popupWrap{
-		display: none;
-		position: fixed;
+	.headerWrap{
 		width: 100%;
-		height: 100%;
-		z-index: 9;
+		height: 70px;
+		background: #475c6f;
 	}
-	.popup_bg{
-		position: fixed;
-		top:0;
-		left:0;
-		width:100%;
-		height:100%;
-		background: #111;
-		opacity: 0.5;
-	}
-	
-	.leftAside{
-		position: absolute;
-		top:0;
-		left: 0;
-		width: 200px;
-		box-shadow: 0px 0px 6px 0px gray;
-		background: #fff;
-		z-index: 5;
-	}
-	
-	.rightAside{
-		position: absolute;
-		top: 0;
-		left:0;
-		padding-left:202px;
-		width: 100%;
-	}
-	.raTop{
-		width: 100%;
-		height: 80px;
-		background: #fff;
-		box-shadow: 0px 0px 10px 0px gray;
-	}
-	.raBg{
-		position: absolute;
-		top: 0;
-		left:0;
-		width: 100%;
-		height: 700px;
-		background: #ecf7ff;
-		z-index: -1;
-	}
-	
-	
 	.sectionWrap{
 		width: 100%;
-		min-width: 1100px;
 		min-height: 829px;
 		clear: both;
-		padding: 10px;
-		padding-bottom: 100px;
+	}
+	.sectionTitle{
+		width: 100%;
+		background: #efefef;
+	}
+	.sectionTitle > p{
+		width: 1100px;
+		font-size: 25px;
+		padding: 15px 20px;
+	}
+	.sectionTitle > p > img:first-child{
+		width: 20px;
+		vertical-align: middle;
+		margin-right: 10px;
+	}
+	.sectionTitle > p > img:last-child{
+		width: 500px;
+		vertical-align: middle;
+		margin-left: 15px;
 	}
 	.section{
-		width: 100%;
-		height: 785px;
+		width: 1100px;
 		margin: 0 auto;
-		position: relative;
+		padding: 15px 0;
 	}
 	.tblWrap{
-		width: 590px;
+		width: 550px;
 		margin: 0 auto;
-	}
-	.tblWrap > h3{
-		font-size: 28px;
-		margin: 20px 0;
 	}
 	.tblWrap > table{
 		width: 100%;
@@ -101,7 +63,7 @@
 		border-bottom: 2px solid lightgray;
 	}
 	.tblWrap > table tr > th{
-		width: 160px;
+		width: 140px;
 		font-size: 15px;
 		text-align: left;
 		padding: 15px;
@@ -187,12 +149,11 @@
 		background: #efefef;
 		color: gray;
 	}
-	
-	.footer{
+
+	.footerWrap{
 		width: 100%;
-		height: 100px;
-		background: #1797f8;
-		box-shadow: 0px 0px 20px 0px gray;
+		height: 70px;
+		background: #7b93a8;
 	}
 </style>
 <script>
@@ -247,6 +208,7 @@ function post_ownerInfoUpdate(vo){
 }
 
 $(function(){
+	
 	draw_ownerInfo($("#seOno").val());
 	
 	$(".btnWrap > p").click(function(){
@@ -268,67 +230,65 @@ $(function(){
 			location.replace("${pageContext.request.contextPath}/owner/oMain");
 		}
 	});
+	
 });
 </script>
+<style>
+
+
+</style>
 </head>
 <body>
 	<div class="allWrap">
-		<div class="popupWrap">
-			<div class="popup_bg"></div>
-			
-		</div><!-- popupWrap end -->
-		<div class="leftAside">
-			<jsp:include page="../include/ownerMenu.jsp"></jsp:include>
+		<div class="headerWrap">
+			<jsp:include page="../include/ownerHeader.jsp"></jsp:include>
 		</div>
-		<div class="rightAside">
-			<div class="raTop">
-				<jsp:include page="../include/ownerHeader.jsp"></jsp:include>
+		<div class="sectionWrap">
+			<div class="sectionTitle">
+				<p><img src="${pageContext.request.contextPath}/resources/images/icon_plus_cr.png"><span>개인정보수정</span><img src="${pageContext.request.contextPath}/resources/images/icon_line.png"></p>
 			</div>
-			<div class="raBg"></div>
-			<div class="sectionWrap">
-				<input id="selAddr" type="hidden" name="addr" value="">
-				<div class="section">
-					<div class="tblWrap"> 
-						<h3>회원정보 수정</h3>
-						<table>
-							<tr>
-								<th><span class="fc_red">* </span>아이디</th>
-								<td><input type="text" name="id" placeholder="아이디를 입력해주세요." readonly></td>
-							</tr>
-							<tr>
-								<th><span class="fc_red">* </span>비밀번호</th>
-								<td><input type="password" name="pw" placeholder="비밀번호 변경을 원할 경우 입력해주세요."><p>비밀번호는 영문, 숫자, 특수문자를 합친 8자리 이상 가능합니다.</p></td>
-							</tr>
-							<tr>
-								<th><span class="fc_red">* </span>비밀번호 확인</th>
-								<td><input type="password" name="pwChk" placeholder="비밀번호 변경을 원할 경우 입력해주세요."></td>
-							</tr>
-							<tr>
-								<th><span class="fc_red">* </span>이름</th>
-								<td><input type="text" name="name" placeholder="이름을  입력해주세요."></td>
-							</tr>
-							<tr>
-								<th><span class="fc_red">* </span>생년월일</th>
-								<td><input type="text" name="birth" placeholder="ex) 1999-09-09"></td>
-							</tr>
-							<tr>
-								<th><span class="fc_red">* </span>휴대전화</th>
-								<td><input type="text" name="phone" placeholder="ex) 010-1111-2222"></td>
-							</tr>
-							<tr>
-								<th><span class="fc_red">* </span>이메일</th>
-								<td><input type="text" name="mail" placeholder="ex) contower@contower.com"><p>아이디 및 비밀번호 찾기에 사용되므로 정확하게 입력해주세요.</p></td>
-							</tr>
-						</table>
-						<div class="btnWrap">
-							<p>수정</p>
-							<p>취소</p>
-						</div>
-					</div><!-- tblWrap end -->
-				</div><!-- section end -->
-			</div><!-- sectionWrap end -->
-			<div class="footer"></div>
-		</div><!-- rightAside end -->
-	</div><!-- allWrap end -->
+			<div class="section">
+				<div class="tblWrap">
+					<table>
+						<tr>
+							<th><span class="fc_red">* </span>아이디</th>
+							<td><input type="text" name="id" placeholder="아이디를 입력해주세요." readonly></td>
+						</tr>
+						<tr>
+							<th><span class="fc_red">* </span>비밀번호</th>
+							<td><input type="password" name="pw" placeholder="비밀번호 변경을 원할 경우 입력해주세요."><p>비밀번호는 영문, 숫자, 특수문자를 합친 8자리 이상 가능합니다.</p></td>
+						</tr>
+						<tr>
+							<th><span class="fc_red">* </span>비밀번호 확인</th>
+							<td><input type="password" name="pwChk" placeholder="비밀번호 변경을 원할 경우 입력해주세요."></td>
+						</tr>
+						<tr>
+							<th><span class="fc_red">* </span>이름</th>
+							<td><input type="text" name="name" placeholder="이름을  입력해주세요."></td>
+						</tr>
+						<tr>
+							<th><span class="fc_red">* </span>생년월일</th>
+							<td><input type="text" name="birth" placeholder="ex) 1999-09-09"></td>
+						</tr>
+						<tr>
+							<th><span class="fc_red">* </span>휴대전화</th>
+							<td><input type="text" name="phone" placeholder="ex) 010-1111-2222"></td>
+						</tr>
+						<tr>
+							<th><span class="fc_red">* </span>이메일</th>
+							<td><input type="text" name="mail" placeholder="ex) contower@contower.com"><p>아이디 및 비밀번호 찾기에 사용되므로 정확하게 입력해주세요.</p></td>
+						</tr>
+					</table>
+					<div class="btnWrap">
+						<p>수정</p>
+						<p>취소</p>
+					</div>
+				</div><!-- tblWrap end -->
+			</div><!-- section end -->
+		</div>
+		<div class="footerWrap">
+			
+		</div>
+	</div>
 </body>
 </html>

@@ -163,13 +163,13 @@
 	.tblWrap{
 		margin: 10px 0; 
 		margin-right: 15px;
+		margin-top: 50px;
 	}
 	.tblWrap > select{
 		font-size: 14px;
 		padding: 3px;
 		border-radius: 10px;
 		margin-bottom: 3px;
-		margin-top: 30px;
 	}
 	.tblWrap > #addRoomBtn{
 		color: #efefef;
@@ -599,11 +599,16 @@ function draw_roomEmpty(bno, state, orderType){
 	var info = {bno:bno, state:state, orderType:orderType};
 	var list = get_roomByBnoState(info);
 	var txt = "";
-	$(list).each(function(){
-		txt += "<tr class='tblContentTr'>"
-			+ "<td>"+this.rno+"호</td>"
-			+ "<td><div class='repairSimple'>"+this.repair+"</div><div class='repairDetail'><h3><span></span> 수리내역</h3><div class='repairDetailContent'><textarea disabled>"+this.repair+"</textarea></div></div></td></tr>";
-	});
+	if(list.length == 0){
+		txt += "<tr class='tblContentTr'><td colspan='2'>공실 정보가 존재하지 않습니다.</td></tr>";
+	}else{
+		$(list).each(function(){
+			txt += "<tr class='tblContentTr'>"
+				+ "<td>"+this.rno+"호</td>"
+				+ "<td><div class='repairSimple'>"+this.repair+"</div><div class='repairDetail'><h3><span></span> 수리내역</h3><div class='repairDetailContent'><textarea disabled>"+this.repair+"</textarea></div></div></td></tr>";
+		});
+	}
+	
 	$("#emptyRoom > table").append(txt);
 	
 }
@@ -613,19 +618,23 @@ function draw_roomContractComplete(bno, state, orderType){
 	var info = {bno:bno, state:state, orderType:orderType};
 	var list = get_roomByBnoState(info);
 	var txt = "";
-	$(list).each(function(){
-		txt += "<tr class='tblContentTr'>"
-			+ "<td>"+this.pay_type+"</td>"
-			+ "<td>"+this.rno+"호</td>"
-			+ "<td>"+this.company+"</td>"
-			+ "<td>"+this.company_call+"</td>"
-			+ "<td>"+this.check_in+"</td>"
-			+ "<td>"+this.check_out+"</td>"
-			+ "<td>"+this.downpayment+"만원</td>"
-			+ "<td>"+this.deposit+"만원</td>"
-			+ "<td>"+this.monthly_rent+"만원</td>"
-			+ "<td><div class='repairSimple'>"+this.memo+"</div><div class='repairDetail'><h3><span></span> 수리요청</h3><div class='repairDetailContent'><textarea disabled>"+this.memo+"</textarea></div></div></td></tr>";
-	});
+	if(list.length == 0){
+		txt += "<tr class='tblContentTr'><td colspan='10'>계약완료 정보가 존재하지 않습니다.</td></tr>";
+	}else{
+		$(list).each(function(){
+			txt += "<tr class='tblContentTr'>"
+				+ "<td>"+this.pay_type+"</td>"
+				+ "<td>"+this.rno+"호</td>"
+				+ "<td>"+this.company+"</td>"
+				+ "<td>"+this.company_call+"</td>"
+				+ "<td>"+this.check_in+"</td>"
+				+ "<td>"+this.check_out+"</td>"
+				+ "<td>"+this.downpayment+"만원</td>"
+				+ "<td>"+this.deposit+"만원</td>"
+				+ "<td>"+this.monthly_rent+"만원</td>"
+				+ "<td><div class='repairSimple'>"+this.memo+"</div><div class='repairDetail'><h3><span></span> 수리요청</h3><div class='repairDetailContent'><textarea disabled>"+this.memo+"</textarea></div></div></td></tr>";
+		});
+	}
 	
 	$("#contractComplete > table").append(txt);
 }

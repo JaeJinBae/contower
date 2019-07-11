@@ -47,10 +47,10 @@
 		background: #fff;
 		z-index: 5;
 	}
-	.menuWrap > ul > li:nth-child(2) > a{
+	.menuWrap > ul > li:nth-child(1) > a{
 		color: #fff;
 	}
-	.menuWrap > ul > li:nth-child(2) > .menuBg{
+	.menuWrap > ul > li:nth-child(1) > .menuBg{
 		display:block !important;
 		position: absolute;
 		top: -18px;
@@ -163,13 +163,13 @@
 	.tblWrap{
 		margin: 10px 0; 
 		margin-right: 15px;
+		margin-top: 50px;
 	}
 	.tblWrap > select{
 		font-size: 14px;
 		padding: 3px;
 		border-radius: 10px;
 		margin-bottom: 3px;
-		margin-top: 30px;
 	}
 	.tblWrap > #addRoomBtn{
 		color: #efefef;
@@ -271,21 +271,28 @@
 		font-size: 15px; 
 	}
 	
-	
+	#monthlyRent_record > table tr:nth-child(1) th{
+		position: relative;
+	}
 	.mrrBtn{
 		display: none;
-		float: right;
+		/* float: right; */
 		padding: 3px 6px;
 		border-radius: 3px;
-		margin-left: 8px;
+		/* margin-left: 8px; */
+		position:absolute;
 	}
 	#mrrUpdateBtn{
 		background: #19915a;
 		color: #fff;
+		font-size: 15px;
+		right: 65px;
 	}
 	#mrrUpdateCancelBtn{
 		background: #e17719;
 		color: #fff;
+		font-size: 15px;
+		right:15px;
 	}
 	#prevMrr{
 		margin-right: 20px;
@@ -696,7 +703,7 @@ function draw_roomTotal(bno, state, orderType){
 	var txt = "";
 	$(list).each(function(){
 		txt += "<tr class='tblContentTr'>"
-			+ "<td><select name='state'><option value='공실'>공실</option><option value='입주완료'>입주완료</option><option value='계약완료'>계약완료</option></select><input type='hidden' name='no' value='"+this.no+"'</td>"
+			+ "<td>"+this.state+"<input type='hidden' name='no' value='"+this.no+"'</td>"
 			+ "<td>"+this.rno+"호</td>"
 			+ "<td>원룸</td>"
 			+ "<td>"+this.pay_type+"</td>"
@@ -726,11 +733,16 @@ function draw_roomEmpty(bno, state, orderType){
 	var info = {bno:bno, state:state, orderType:orderType};
 	var list = get_roomByBnoState(info);
 	var txt = "";
-	$(list).each(function(){
-		txt += "<tr class='tblContentTr'>"
-			+ "<td>"+this.rno+"호</td>"
-			+ "<td><div class='repairSimple'>"+this.repair+"</div><div class='repairDetail'><h3><span></span> 수리내역</h3><div class='repairDetailContent'><textarea disabled>"+this.repair+"</textarea></div></div></td></tr>";
-	});
+	if(list.length == 0){
+		txt += "<tr class='tblContentTr'><td colspan='2'>공실이 없습니다.</td></tr>";
+	}else{
+		$(list).each(function(){
+			txt += "<tr class='tblContentTr'>"
+				+ "<td>"+this.rno+"호</td>"
+				+ "<td><div class='repairSimple'>"+this.repair+"</div><div class='repairDetail'><h3><span></span> 수리내역</h3><div class='repairDetailContent'><textarea disabled>"+this.repair+"</textarea></div></div></td></tr>";
+		});
+	}
+	
 	$("#emptyRoom > table").append(txt);
 	
 }
@@ -740,19 +752,24 @@ function draw_roomContractComplete(bno, state, orderType){
 	var info = {bno:bno, state:state, orderType:orderType};
 	var list = get_roomByBnoState(info);
 	var txt = "";
-	$(list).each(function(){
-		txt += "<tr class='tblContentTr'>"
-			+ "<td>"+this.pay_type+"</td>"
-			+ "<td>"+this.rno+"호</td>"
-			+ "<td>"+this.company+"</td>"
-			+ "<td>"+this.company_call+"</td>"
-			+ "<td>"+this.check_in+"</td>"
-			+ "<td>"+this.check_out+"</td>"
-			+ "<td>"+this.downpayment+"만원</td>"
-			+ "<td>"+this.deposit+"만원</td>"
-			+ "<td>"+this.monthly_rent+"만원</td>"
-			+ "<td><div class='repairSimple'>"+this.memo+"</div><div class='repairDetail'><h3><span></span> 수리요청</h3><div class='repairDetailContent'><textarea disabled>"+this.memo+"</textarea></div></div></td></tr>";
-	});
+	if(list.length == 0){
+		txt += "<tr class='tblContentTr'><td colspan='10'>계약완료 정보가 존재하지 않습니다.</td></tr>";
+	}else{
+		$(list).each(function(){
+			txt += "<tr class='tblContentTr'>"
+				+ "<td>"+this.pay_type+"</td>"
+				+ "<td>"+this.rno+"호</td>"
+				+ "<td>"+this.company+"</td>"
+				+ "<td>"+this.company_call+"</td>"
+				+ "<td>"+this.check_in+"</td>"
+				+ "<td>"+this.check_out+"</td>"
+				+ "<td>"+this.downpayment+"만원</td>"
+				+ "<td>"+this.deposit+"만원</td>"
+				+ "<td>"+this.monthly_rent+"만원</td>"
+				+ "<td><div class='repairSimple'>"+this.memo+"</div><div class='repairDetail'><h3><span></span> 수리요청</h3><div class='repairDetailContent'><textarea disabled>"+this.memo+"</textarea></div></div></td></tr>";
+		});
+	}
+	
 	
 	$("#contractComplete > table").append(txt);
 }
@@ -904,7 +921,7 @@ $(function(){
 	});
 	
 	//종합현황 수리내역 클릭
-	$(document).on("click", "#totalInfo > table .tblContentTr > td:last-child", function(){
+	/* $(document).on("click", "#totalInfo > table .tblContentTr > td:last-child", function(){
 		var repairContent = $(this).find(".repairSimple").text();
 		var no = $(this).parent().find("td").eq(0).find("input[name='no']").val();
 		
@@ -912,7 +929,7 @@ $(function(){
 		$(".popup_repair > table tr > td > textarea").val(repairContent);
 		$(".popup_repair").css("display","block");
 		$(".popupWrap").css("display", "block");
-	});
+	}); */
 	
 	//종합현황 수리내역 팝업 +클릭
 	$(document).on("click", ".popup_repair > .popup_btnWrap > p", function(){
@@ -1296,7 +1313,7 @@ $(function(){
 					</div><!-- tblTop2 end -->
 					<div class="tblBottom">
 						<div class="tblWrap" id="totalInfo">
-							<button id="addRoomBtn"><img src="${pageContext.request.contextPath}/resources/images/icon_plus.png"></button>
+							<%-- <button id="addRoomBtn"><img src="${pageContext.request.contextPath}/resources/images/icon_plus.png"></button> --%>
 							<select>
 								<option>정렬선택</option>
 								<option value="rno">호실</option>

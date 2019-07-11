@@ -69,6 +69,17 @@
 	width: 49%;
 	margin-left: 18px;
 }
+.popup_buiUpdate > table tr > td > input[name='site']{
+	width: 78%;
+	text-align: right;
+}
+.popup_buiUpdate > table tr > td > input[name='gross_area']{
+	width: 78%;
+	text-align: right;
+}
+.popup_buiUpdate > table tr > td > img{
+	vertical-align: middle;
+}
 .popup_buiUpdate > table tr > td > #ownerChk{
 	font-size: 14px;
 	background: #037dd2;
@@ -537,9 +548,9 @@ $(function(){
 				<th>준공일</th>
 				<td><input type="text" name="completion_date"></td>
 				<th>대지</th>
-				<td><input type="text" name="site" class="numberOnly"></td>
+				<td><input type="text" name="site" class="numberOnly"><img src="${pageContext.request.contextPath}/resources/images/m2.png"></td>
 				<th>연면적</th>
-				<td><input type="text" name="gross_area" class="numberOnly"></td>
+				<td><input type="text" name="gross_area" class="numberOnly"><img src="${pageContext.request.contextPath}/resources/images/m2.png"></td>
 				<th>도로</th>
 				<td><input type="text" name="road"></td>
 			</tr>
