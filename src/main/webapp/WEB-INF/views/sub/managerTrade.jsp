@@ -292,7 +292,7 @@ function draw_trade(info){
 				+ "<tr style='background:#febe7a;'><th>융자</th><td>"+this.financing+"만원</td></tr>"
 				+ "<tr style='background:#f6a285;'><th>이자<br>(연"+this.interest_percent+"%)</th><td>2100만원</td></tr>"
 				+ "<tr style='background:#febe7a;border-bottom:10px solid #fff;'><th>1년수익</th><td>6600만원</td></tr>"
-				+ "<tr style='background:#2aa930;'><th>인수금액</th><td>"+this.trade_price+"</td></tr>"
+				+ "<tr style='background:#2aa930;'><th>인수금액</th><td>"+this.trade_price+"만원</td></tr>"
 				+ "<tr style='background:#87c68a;'><th>월수익</th><td>"+this.total_monthly_rent+"만원</td></tr>"
 				+ "<tr style='background:#98cc96;'><th>연수익</th><td>4160만원</td></tr>"
 				+ "<tr style='background:#87c68a;'><th>연수익률</th><td>11.12%</td></tr></table>"
@@ -386,6 +386,20 @@ $(function(){
 			$("#selAddr").val(sido);
 			$(".smallMapWrap").fadeIn();
 			$("img[usemap]").rwdImageMaps();
+
+			var s="";
+			var k1 = sido;
+	    	
+			var page=1;
+			var perPageNum=10;
+			var searchType="a";
+			var keyword1=k1;
+			
+			var info = {page:page, perPageNum:perPageNum, searchType:searchType, keyword1:keyword1, keyword2:"", keyword3:""};
+			draw_trade(info);
+			
+			$(".searchWrap > input[name='sido_sigungu']").val(sido);
+			$(".searchWrap").css("display", "block");
 		});
 		
 	});
@@ -412,6 +426,11 @@ $(function(){
 		$(".searchWrap > input[name='sido_sigungu']").val(sido+" "+sigungu);
 		$(".searchWrap").css("display", "block");
 	})
+	
+	//input 태그 숫자만
+	$(document).on("keyup", ".numberOnly", function(){
+		$(this).val($(this).val().replace(/[^0-9]/g,""));
+	});
 	
 	//건물매매 조건 검색
 	$(".searchWrap > button").click(function(){
@@ -804,7 +823,7 @@ $(function(){
 				<div class="contentWrap">
 					<div class="searchWrap">
 						<input type="text" name="sido_sigungu" value="" readonly>
-						<input type="text" name="tradePrice1" placeholder="숫자만 입력하세요.">만원~<input type="text" name="tradePrice2" placeholder="숫자만 입력하세요.">만원
+						<input class="numberOnly" type="text" name="tradePrice1" placeholder="숫자만 입력하세요.">만원~<input class="numberOnly" type="text" name="tradePrice2" placeholder="숫자만 입력하세요.">만원
 					<button>검 색</button>
 						
 						<img id="printBtn" alt="인쇄" title="정보인쇄" src="${pageContext.request.contextPath}/resources/images/icon_printer.png">

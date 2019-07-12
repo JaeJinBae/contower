@@ -386,6 +386,20 @@ $(function(){
 			$("#selAddr").val(sido);
 			$(".smallMapWrap").fadeIn();
 			$("img[usemap]").rwdImageMaps();
+			
+			var s="";
+			var k1 = sido;
+	    	
+			var page=1;
+			var perPageNum=10;
+			var searchType="a";
+			var keyword1=k1;
+			
+			var info = {page:page, perPageNum:perPageNum, searchType:searchType, keyword1:keyword1, keyword2:"", keyword3:""};
+			draw_trade(info);
+			
+			$(".searchWrap > input[name='sido_sigungu']").val(sido);
+			$(".searchWrap").css("display", "block");
 		});
 		
 	});
@@ -413,6 +427,11 @@ $(function(){
 		$(".searchWrap").css("display", "block");
 	})
 	
+	//input 태그 숫자만
+	$(document).on("keyup", ".numberOnly", function(){
+		$(this).val($(this).val().replace(/[^0-9]/g,""));
+	});
+	
 	//건물매매 조건 검색
 	$(".searchWrap > button").click(function(){
 		var s="";
@@ -433,7 +452,7 @@ $(function(){
     	}else if(k1.length >2 && k2.length > 1){
     		s = "at";
     	}
-    	
+    	console.log(s);
 		var page=1;
 		var perPageNum=10;
 		var searchType=s;
@@ -804,7 +823,7 @@ $(function(){
 				<div class="contentWrap">
 					<div class="searchWrap">
 						<input type="text" name="sido_sigungu" value="" readonly>
-						<input type="text" name="tradePrice1" placeholder="숫자만 입력하세요.">만원~<input type="text" name="tradePrice2" placeholder="숫자만 입력하세요.">만원
+						<input class="numberOnly" type="text" name="tradePrice1" placeholder="숫자만 입력하세요.">만원~<input class="numberOnly" type="text" name="tradePrice2" placeholder="숫자만 입력하세요.">만원
 					<button>검 색</button>
 						
 						<img id="printBtn" alt="인쇄" title="정보인쇄" src="${pageContext.request.contextPath}/resources/images/icon_printer.png">
