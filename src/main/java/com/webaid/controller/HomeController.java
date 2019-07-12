@@ -1,7 +1,5 @@
 package com.webaid.controller;
 
-import static org.hamcrest.CoreMatchers.nullValue;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -595,6 +593,7 @@ public class HomeController {
 				vo.setCompany(list.get(i).get("company"));
 				vo.setCompany_call(list.get(i).get("company_call"));
 				vo.setDownpayment(Integer.parseInt(list.get(i).get("downpayment")));
+				vo.setMemo("");
 				rService.register(vo);
 				
 				if(list.get(i).get("state").equals("공실")){

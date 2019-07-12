@@ -582,7 +582,7 @@ function post_roomInfo(bno){
 			repair = "";
 		}
 
-		rObj={no:0, bno:bno, bname:bname, rno:rno, state:state, room_type:room_type, pay_type:pay_type, tenant:tenant, phone:phone, check_in:check_in, check_out:check_out, deposit:deposit, monthly_rent:monthly_rent, rpw:rpw, hope_price:hope_price, selling_type:selling_type, company:company, company_call:company_call, downpayment:downpayment, repair:repair};
+		rObj={no:0, bno:bno, bname:bname, rno:rno, state:state, room_type:room_type, pay_type:pay_type, tenant:tenant, phone:phone, check_in:check_in, check_out:check_out, deposit:deposit, monthly_rent:monthly_rent, rpw:rpw, hope_price:hope_price, selling_type:selling_type, company:company, company_call:company_call, downpayment:downpayment, repair:repair, memo:''};
 		rArr.push(rObj);
 	});
 	
@@ -599,6 +599,7 @@ function post_roomInfo(bno){
 				location.replace("${pageContext.request.contextPath}/mBuiInfo/"+bno);
 			}else{
 				alert("신규관리건물 등록이 완료되지 않았습니다.\n새로고침(F5) 후 다시 시도하세요.");
+				console.log(json);
 			}
 			
 		},
@@ -679,6 +680,9 @@ function ownerRegister(vo){
 				alert("건축주 계정이 정상적으로 생성되었습니다.");
 				$(".buiInfo > table tr > td > input[name='ono']").val(json);
 				$(".buiInfo > table tr td > input[name='ownerChkVal']").val("o");
+				
+				$(".popup_ownerRegister").css("display", "none");
+				$(".popup_wrap").css("display", "none");
 			}
 			
 		},

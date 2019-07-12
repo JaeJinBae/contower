@@ -102,7 +102,7 @@ $(function(){
 	<ul>
 		<li><a href="${pageContext.request.contextPath}/mBuiReg">신규건물추가</a><img class="menuBg" src="${pageContext.request.contextPath}/resources/images/menuBg.png"></li>
 		<li>
-			<a href="">관리건물 ▼</a>
+			<a href="#none">관리건물 ▼</a>
 			<img class="menuBg" src="${pageContext.request.contextPath}/resources/images/menuBg.png">
 			<div class="headerSubMenu">
 				<ul>
